@@ -32,7 +32,7 @@ tree programmatically rather than trusting the eye.
   rules (color ranges, font loading, traversal gotchas) that every script here
   depends on. Pass `skillNames: "figma-use"` on each call.
 - **Source of truth is code, not the Figma file.** The canonical tokens live in
-  `ooredoo_design_system_complete-2.html` (`:root` custom properties) and are
+  `index.html` (`:root` custom properties) and are
   mirrored in the Figma variable collection **"Ooredoo DS"** (`color/*`,
   `radius/*`). Per the project's `CLAUDE.md`, never treat a Figma source design's
   raw hex/font as correct — map it to the closest DS token.
@@ -68,7 +68,7 @@ finding is actually visible).
 
 Read the DS tokens once so the audit can compare against them:
 
-- Grep `ooredoo_design_system_complete-2.html` for the `:root` block to get the
+- Grep `index.html` for the `:root` block to get the
   color hexes, radii (`--radius-*`), and the two font families (`Rubik` for
   headings, `Noto Sans` for body; `Outfit` only appears in the doc's own spec
   labels, not product UI).

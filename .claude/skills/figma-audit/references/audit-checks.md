@@ -40,7 +40,7 @@ for (const v of vars) {
 return map;   // e.g. {"color/red":{id:"...",hex:"#ED1C24"}, "radius/pill":{id:"...",type:"FLOAT"}}
 ```
 
-Also grep `ooredoo_design_system_complete-2.html` `:root` for the authoritative
+Also grep `index.html` `:root` for the authoritative
 hex list. Build `hex -> tokenName` by inverting the color entries so the audit
 can say "this #ED1C24 should be bound to `color/red`".
 
