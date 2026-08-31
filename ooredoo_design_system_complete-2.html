@@ -56,10 +56,10 @@
     --bg1:                    var(--color-bg-1);
     --bg2:                    var(--color-bg-2);
     
-    --success-600:            #34B76D;
+    --success-600:            var(--color-notification-success-600); /* dedup: #34B76D */
     --success-100:            #E6F4EC;
-    --info-100:               #D8EEEA;
-    --info-900:               #37534E;
+    --info-100:               var(--color-notification-info-100);    /* dedup: #D8EEEA */
+    --info-900:               var(--color-notification-info-900);    /* dedup: #37534E */
     /* Addendum specific updated grays */
     --gray-1:                 #AAAAAA;
     --gray-2:                 #898989;
@@ -68,6 +68,93 @@
     --selector-fill-resting:  #FDFDFD;
     --selector-fill-disabled: #F4F4F4;
     --stroke-border:          #AAAAAA;
+    --color-border-primary:   #E9E9EB;
+
+    /* ── Added from Figma variables (DS-9-6-26) ──
+       Names mirror the Figma variable paths (leaf name). */
+    /* colors/primary/blue — full Ooredoo Blue scale */
+    --color-ooredoo-blue-25:  #EEF4F8;
+    --color-ooredoo-blue-50:  #E5EFFF;
+    --color-ooredoo-blue-100: #B6CDF2;
+    --color-ooredoo-blue-200: #9DBEF2;
+    --color-ooredoo-blue-300: #739FE5;
+    --color-ooredoo-blue-400: #3F78D4;
+    --color-ooredoo-blue-500: var(--color-ooredoo-blue);    /* dedup: #0047BB */
+    --color-ooredoo-blue-600: #003DA1;
+    --color-ooredoo-blue-700: #003387;
+    --color-ooredoo-blue-800: var(--color-ooredoo-blue-dark); /* dedup: #002A6E */
+    --color-ooredoo-blue-900: #002054;
+    /* colors/primary/red/* — extended Ooredoo Red tints */
+    --color-ooredoo-red-100:  #F9B9BB;
+    --color-ooredoo-red-200:  #F7979A;
+    /* colors/secondary/rose-pink */
+    --color-rose-pink:        var(--color-notification-danger-500); /* dedup: #FF585D */
+    /* call to action/selector/* — CTA interaction states */
+    --color-action-hover:     #A91419;
+    --color-action-focus:     #800F15;
+    /* background-grey-200 */
+    --color-bg-grey-200:      #DFE7E7;
+
+    /* colors/statuses/success — notification success scale */
+    --color-notification-success-50:  #EBFAF2;
+    --color-notification-success-100: #C3EFD5;
+    --color-notification-success-200: #A2E6C0;
+    --color-notification-success-300: #7ADCA4;
+    --color-notification-success-400: #62D594;
+    --color-notification-success-500: #39CB78;
+    --color-notification-success-600: #34B76D;
+    --color-notification-success-700: #279055;
+    --color-notification-success-800: #1F7042;
+    --color-notification-success-900: #185432;
+    /* colors/statuses/warning — notification warning scale */
+    --color-notification-warning-50:  #FEF9E7;
+    --color-notification-warning-100: #FBEDB1;
+    --color-notification-warning-200: #F9E58B;
+    --color-notification-warning-300: #F6D955;
+    --color-notification-warning-400: #F4D134;
+    --color-notification-warning-500: #F1C400;
+    --color-notification-warning-600: #DBB300;
+    --color-notification-warning-700: #AD8E00;
+    --color-notification-warning-800: #856C00;
+    --color-notification-warning-900: #665300;
+    /* colors/statuses/info — notification info scale */
+    --color-notification-info-50:  #F4FAF9;
+    --color-notification-info-100: #D8EEEA;
+    --color-notification-info-200: #C7E6E0;
+    --color-notification-info-300: #AFDAD2;
+    --color-notification-info-400: #9CD3C9;
+    --color-notification-info-500: #86C8BC;
+    --color-notification-info-600: #7BB7AC;
+    --color-notification-info-700: #5E8D84;
+    --color-notification-info-800: #496E67;
+    --color-notification-info-900: #37534E;
+    /* colors/statuses/danger — notification danger scale */
+    --color-notification-danger-50:  #FDE8E9;
+    --color-notification-danger-100: #FFCCCE;
+    --color-notification-danger-200: #FFB2B5;
+    --color-notification-danger-300: #FF999C;
+    --color-notification-danger-400: #FF7377;
+    --color-notification-danger-500: #FF585D;
+    --color-notification-danger-600: #E52228;
+    --color-notification-danger-700: #B21217;
+    --color-notification-danger-800: #8C070B;
+    --color-notification-danger-900: #660003;
+
+    /* colors/monotone — monotone scale (duplicates aliased to source) */
+    --color-mono-white:          var(--color-pure-white);     /* #FFFFFF */
+    --color-mono-gray-50:        #F9F9F9;
+    --color-mono-gray-100:       var(--selector-fill-disabled); /* #F4F4F4 */
+    --color-mono-gray-200:       var(--color-gray-5);         /* #EEEEEE */
+    --color-mono-gray-300:       var(--color-gray-4);         /* #E0E0E0 */
+    --color-mono-dark-gray-100:  var(--stroke-border);        /* #AAAAAA */
+    --color-mono-dark-gray-200:  var(--gray-2);               /* #898989 */
+    --color-mono-dark-gray-300:  var(--color-gray-1);         /* #6D6D6D */
+    --color-mono-dark-gray-400:  #595959;
+    --color-mono-gray-blue-50:   var(--color-bg-1);           /* #FDFDFD */
+    --color-mono-gray-blue-100:  var(--color-bg-2);           /* #EBF0F0 */
+    --color-mono-gray-blue-200:  var(--color-bg-grey-200);    /* #DFE7E7 */
+    --color-mono-gray-blue-300:  var(--color-ooredoo-blue-25); /* #EEF4F8 */
+    --color-mono-black:          var(--color-ooredoo-black);  /* #221E20 */
 
     /* Shadows */
     --shadow-sm:  0 1px 3px rgba(0,0,0,.08);
@@ -76,13 +163,13 @@
     --shadow-top: 0 0 12px rgba(0,0,0,.30);
 
     /* Toggle tokens */
-    --toggle-bg:            #EEF4F8;
-    --toggle-active-bg:     #0047BB;
-    --toggle-active-text:   #FFFFFF;
-    --toggle-inactive-text: #ED1C24;
+    --toggle-bg:            var(--color-ooredoo-blue-25);        /* dedup: #EEF4F8 */
+    --toggle-active-bg:     var(--color-ooredoo-blue);           /* dedup: #0047BB */
+    --toggle-active-text:   var(--color-pure-white);             /* dedup: #FFFFFF */
+    --toggle-inactive-text: var(--color-ooredoo-red);            /* dedup: #ED1C24 */
     --toggle-shadow:        0 2px 4px rgba(0,0,0,0.20);
-    --toggle-dual-blue-bg:  #EEF4F8;
-    --toggle-dual-red-bg:   #FDE8E9;
+    --toggle-dual-blue-bg:  var(--color-ooredoo-blue-25);        /* dedup: #EEF4F8 */
+    --toggle-dual-red-bg:   var(--color-notification-danger-50); /* dedup: #FDE8E9 */
 
     /* Border radius */
     --radius-sm:   4px;
@@ -1154,7 +1241,7 @@
   }
   .ub-actions img { width: 24px; height: 24px; display: block; cursor: pointer; }
   .ub-spinner { width: 32px; height: 32px; flex-shrink: 0; }
-  .ub-spinner img { width: 32px; height: 32px; display: block;
+  .ub-spinner svg { width: 32px; height: 32px; display: block;
     animation: ub-spin 1.1s linear infinite; }
   @keyframes ub-spin { to { transform: rotate(360deg); } }
 
@@ -1712,6 +1799,117 @@
   .blt-table td.blt-td-item { min-width: 80px; }
 
   /* ─────────────────────────────────────────
+     FEATURE ITEM CARD
+  ───────────────────────────────────────── */
+  /* Base card */
+  .fic {
+    display: flex; flex-direction: column; gap: 12px;
+    background: var(--color-bg-1);
+    border: 1px solid var(--color-gray-4);
+    border-radius: 12px;
+    padding: 16px;
+    width: 280px;
+    box-sizing: border-box;
+    cursor: pointer;
+    transition: box-shadow .18s, border-color .18s, transform .18s;
+    position: relative;
+    text-decoration: none;
+  }
+  .fic:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.10);
+    border-color: var(--color-ooredoo-blue);
+    transform: translateY(-2px);
+  }
+  .fic:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0,71,187,.20);
+    border-color: var(--color-ooredoo-blue);
+  }
+  /* Selected / active state */
+  .fic.fic-selected {
+    border-color: var(--color-ooredoo-red);
+    box-shadow: 0 0 0 2px rgba(237,28,36,.15);
+  }
+  .fic.fic-selected .fic-icon-wrap { background: #FDE8E9; }
+  /* Disabled */
+  .fic.fic-disabled {
+    opacity: .45; pointer-events: none; cursor: not-allowed;
+  }
+  /* Full-width variant */
+  .fic-full { width: 100%; }
+  /* Horizontal variant (icon left, text right) */
+  .fic-horizontal { flex-direction: row; align-items: flex-start; gap: 14px; width: 100%; }
+  .fic-horizontal .fic-icon-wrap { flex-shrink: 0; margin-top: 2px; }
+  .fic-horizontal .fic-body { flex: 1; }
+
+  /* Icon wrapper */
+  .fic-icon-wrap {
+    width: 44px; height: 44px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    background: #EEF4FF;
+    transition: background .18s;
+  }
+  .fic-icon-wrap.fic-icon-red    { background: #FDE8E9; }
+  .fic-icon-wrap.fic-icon-green  { background: #E6F4EC; }
+  .fic-icon-wrap.fic-icon-blue   { background: #EEF4FF; }
+  .fic-icon-wrap.fic-icon-orange { background: #FEF3E2; }
+  .fic-icon-wrap.fic-icon-gray   { background: var(--color-gray-5); }
+  .fic-icon-wrap svg { width: 22px; height: 22px; }
+
+  /* Badge on card (top-right) */
+  .fic-badge {
+    position: absolute; top: 12px; right: 12px;
+    font-family: 'Rubik', sans-serif; font-size: 11px; font-weight: 600;
+    letter-spacing: .04em; text-transform: uppercase;
+    padding: 2px 8px; border-radius: 50px;
+    background: var(--color-ooredoo-red); color: #fff;
+  }
+  .fic-badge-blue   { background: var(--color-ooredoo-blue); }
+  .fic-badge-green  { background: #279055; }
+  .fic-badge-gray   { background: var(--color-gray-2); }
+
+  /* Card body */
+  .fic-body { display: flex; flex-direction: column; gap: 4px; }
+  .fic-title {
+    font-family: 'Rubik', sans-serif; font-size: 15px; font-weight: 600;
+    line-height: 20px; color: var(--color-ooredoo-black);
+  }
+  .fic-desc {
+    font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 400;
+    line-height: 18px; color: var(--color-gray-2);
+  }
+  /* Optional meta row (price / label / tag) */
+  .fic-meta {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: 4px;
+  }
+  .fic-meta-price {
+    font-family: 'Rubik', sans-serif; font-size: 18px; font-weight: 700;
+    color: var(--color-ooredoo-black);
+  }
+  .fic-meta-price span {
+    font-size: 12px; font-weight: 400; color: var(--color-gray-2); margin-left: 2px;
+  }
+  .fic-meta-tag {
+    font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 600;
+    color: #279055; background: #E6F4EC;
+    padding: 3px 8px; border-radius: 50px;
+  }
+  /* Action link row */
+  .fic-action {
+    display: flex; align-items: center; gap: 4px; margin-top: 4px;
+    font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--color-ooredoo-red); cursor: pointer;
+    border: none; background: none; padding: 0; text-decoration: none;
+  }
+  .fic-action:hover { color: #C4161C; }
+  .fic-action svg { width: 14px; height: 14px; }
+
+  /* Grid layout helper */
+  .fic-grid { display: flex; flex-wrap: wrap; gap: 16px; }
+
+  /* ─────────────────────────────────────────
      PROTOTYPE SCREEN
   ───────────────────────────────────────── */
   .proto-wrap { display: flex; justify-content: center; }
@@ -1770,21 +1968,21 @@
   }
   /* plan card */
   .proto-plan-card {
-    border: 1px solid var(--color-gray-4);
+    border: 1px solid var(--color-border-primary);
     border-radius: 12px;
-    padding: 14px 16px;
+    padding: 12px 16px;
     background: var(--color-bg-1);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 12px; margin-bottom: 20px;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 12px; margin-bottom: 4px;
   }
-  .proto-plan-left { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+  .proto-plan-left { display: flex; flex-direction: column; gap: 4px; flex: 1; }
   .proto-plan-label {
-    font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400;
-    color: var(--color-gray-2); line-height: 16px;
+    font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 400;
+    color: var(--gray-2); line-height: 20px;
   }
   .proto-plan-row { display: flex; align-items: center; gap: 8px; }
   .proto-plan-icon {
-    width: 28px; height: 28px; background: #FDE8E9;
+    width: 28px; height: 28px; background: var(--toggle-dual-red-bg);
     border-radius: 8px; display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
   }
@@ -1793,48 +1991,48 @@
     color: var(--color-ooredoo-black); line-height: 20px;
   }
   .proto-plan-account {
-    font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400;
-    color: var(--color-gray-2); line-height: 16px;
+    font-family: 'Outfit', monospace; font-size: 12px; font-weight: 400;
+    color: var(--color-ooredoo-black); line-height: 1; text-transform: uppercase;
   }
   .proto-plan-right { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
   .proto-plan-price {
-    display: flex; align-items: baseline; gap: 2px;
+    display: flex; align-items: baseline; gap: 1px;
   }
   .proto-plan-currency {
-    font-family: 'Rubik', sans-serif; font-size: 12px; font-weight: 400;
-    color: var(--color-gray-2);
+    font-family: 'Outfit', monospace; font-size: 12px; font-weight: 400;
+    color: var(--gray-2); text-transform: uppercase;
   }
   .proto-plan-amount {
-    font-family: 'Rubik', sans-serif; font-size: 20px; font-weight: 700;
-    color: var(--color-ooredoo-black);
+    font-family: 'Outfit', monospace; font-size: 18px; font-weight: 700;
+    color: var(--color-ooredoo-black); text-transform: uppercase;
   }
   .proto-plan-decimal {
-    font-family: 'Rubik', sans-serif; font-size: 12px; font-weight: 400;
-    color: var(--color-gray-2);
+    font-family: 'Outfit', monospace; font-size: 12px; font-weight: 400;
+    color: var(--gray-2); text-transform: uppercase;
   }
   .proto-plan-period {
-    font-family: 'Noto Sans', sans-serif; font-size: 12px; font-weight: 400;
-    color: var(--color-gray-2); line-height: 16px;
+    font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 400;
+    color: var(--gray-2); line-height: 20px;
   }
   /* benefits card */
   .proto-benefits {
-    background: var(--color-gray-5, #F4F4F4);
+    background: var(--selector-fill-disabled);
     border-radius: 12px; padding: 16px;
-    margin: 0 0 28px;
+    margin: 16px 24px 0;
   }
   .proto-benefits-title {
     font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 500;
-    color: var(--color-gray-2); margin-bottom: 12px;
+    color: var(--gray-3); margin-bottom: 12px; letter-spacing: -0.1px;
   }
   .proto-benefit-item {
     display: flex; align-items: flex-start; gap: 10px;
-    padding: 5px 0;
+    padding: 4px 0;
     font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 400;
     color: var(--color-ooredoo-black); line-height: 1.4;
   }
   .proto-benefit-check {
     flex-shrink: 0; margin-top: 2px;
-    color: #27AE60;
+    color: var(--color-success);
   }
   /* CTA area */
   .proto-cta {
@@ -1851,6 +2049,160 @@
     width: 134px; height: 5px; background: #000;
     border-radius: 5px;
   }
+
+  /* ── Track Request: vertical stepper ── */
+  .track-card {
+    border: .5px solid var(--stroke-border);
+    border-radius: 16px;
+    padding: 24px 20px;
+    display: flex; gap: 16px; align-items: flex-start;
+    background: var(--color-bg-1);
+  }
+  .track-rail { display: flex; flex-direction: column; align-items: center; flex-shrink: 0; }
+  .track-step {
+    display: flex; flex-direction: column; align-items: center;
+  }
+  .track-dot {
+    width: 24px; height: 24px; border-radius: var(--radius-pill);
+    border: 2px solid var(--color-border-primary);
+    background: var(--color-bg-1);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--color-gray-1); flex-shrink: 0; line-height: 1;
+  }
+  .track-dot.is-active {
+    border-color: var(--color-ooredoo-blue);
+    color: var(--color-ooredoo-blue);
+  }
+  .track-dot.is-done {
+    border-color: var(--color-ooredoo-blue);
+    background: var(--color-ooredoo-blue);
+    color: var(--color-pure-white);
+  }
+  .track-connector { width: 2px; flex: 1; min-height: 28px; background: var(--color-border-primary); }
+  .track-connector.is-done { background: var(--color-ooredoo-blue); }
+  .track-items { display: flex; flex-direction: column; gap: 16px; flex: 1; min-width: 0; }
+  .track-item-title {
+    font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 500;
+    line-height: 20px; color: var(--color-ooredoo-black);
+  }
+  .track-item-title.is-muted { color: var(--color-gray-2); }
+  .track-item-desc {
+    font-family: 'Rubik', sans-serif; font-size: 13px; font-weight: 400;
+    line-height: 16px; color: var(--color-gray-1); margin-top: 2px;
+  }
+  .track-item-desc.is-muted { color: var(--color-gray-2); }
+  .track-badge {
+    display: inline-flex; align-items: center;
+    margin-top: 6px; padding: 2px 6px; border-radius: var(--radius-sm);
+    background: var(--color-notification-warning-100);
+    color: var(--color-notification-warning-800);
+    font-family: 'Rubik', sans-serif; font-size: 14px; line-height: 20px;
+  }
+  /* reference number card */
+  .track-ref {
+    border: .5px solid var(--stroke-border);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    display: flex; align-items: center; gap: 8px;
+    background: var(--color-bg-1);
+  }
+  .track-ref-label {
+    font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 400;
+    color: var(--gray-2); flex: 1;
+  }
+  .track-ref-value {
+    font-family: 'Rubik', sans-serif; font-size: 16px; font-weight: 400;
+    line-height: 24px; color: var(--color-ooredoo-black);
+  }
+  .track-ref-copy { color: var(--color-ooredoo-red); display: flex; flex-shrink: 0; cursor: pointer; }
+
+  /* ── Compare & Upgrade (mobile-first delta view) ── */
+  .cmp-savings {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--color-notification-warning-100);
+    color: var(--color-notification-warning-800);
+    font-family: 'Rubik', sans-serif; font-size: 13px; font-weight: 600;
+    padding: 6px 12px; border-radius: var(--radius-pill);
+    margin-bottom: 16px;
+  }
+  /* price summary: current vs recommended */
+  .cmp-price-row { display: flex; align-items: stretch; gap: 10px; margin-bottom: 8px; }
+  .cmp-price {
+    flex: 1; border: 1px solid var(--color-border-primary);
+    border-radius: var(--radius-lg); padding: 12px 14px; background: var(--color-bg-1);
+  }
+  .cmp-price.is-current { opacity: .75; }
+  .cmp-price.is-reco { border-color: var(--color-ooredoo-red); border-width: 1.5px; }
+  .cmp-price-tag {
+    font-family: 'Noto Sans', sans-serif; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .04em; color: var(--color-gray-2);
+    display: block; margin-bottom: 4px;
+  }
+  .cmp-price.is-reco .cmp-price-tag { color: var(--color-ooredoo-red); }
+  .cmp-plan-name {
+    font-family: 'Rubik', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--color-ooredoo-black); line-height: 18px; margin-bottom: 6px;
+  }
+  .cmp-amount { display: flex; align-items: baseline; gap: 2px; }
+  .cmp-amount .cur { font-family: 'Outfit', sans-serif; font-size: 12px; color: var(--color-gray-2); }
+  .cmp-amount .num { font-family: 'Outfit', sans-serif; font-size: 20px; font-weight: 700; color: var(--color-ooredoo-black); }
+  .cmp-amount .per { font-family: 'Noto Sans', sans-serif; font-size: 12px; color: var(--color-gray-2); }
+  .cmp-delta-note {
+    font-family: 'Noto Sans', sans-serif; font-size: 12px; color: var(--color-gray-1);
+    text-align: center; margin-bottom: 20px;
+  }
+  /* section labels */
+  .cmp-group-label {
+    font-family: 'Rubik', sans-serif; font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: .05em; color: var(--color-gray-1);
+    margin: 4px 0 10px; display: flex; align-items: center; gap: 8px;
+  }
+  .cmp-group-count {
+    font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700;
+    background: var(--color-notification-success-100); color: var(--color-notification-success-700);
+    padding: 1px 8px; border-radius: var(--radius-pill);
+  }
+  /* change rows */
+  .cmp-changes { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .cmp-row {
+    border: 1px solid var(--color-border-primary); border-radius: var(--radius-lg);
+    padding: 14px 16px; background: var(--color-bg-1);
+  }
+  .cmp-row.is-changed { border-left: 3px solid var(--color-notification-success-500); }
+  .cmp-row-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+  .cmp-row-label {
+    font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 700;
+    color: var(--color-ooredoo-black);
+  }
+  .cmp-chip {
+    display: inline-flex; align-items: center; gap: 4px; flex-shrink: 0;
+    font-family: 'Rubik', sans-serif; font-size: 11px; font-weight: 600;
+    padding: 3px 8px; border-radius: var(--radius-pill);
+  }
+  .cmp-chip.up { background: var(--color-notification-success-100); color: var(--color-notification-success-700); }
+  .cmp-chip.same { background: var(--selector-fill-disabled); color: var(--color-gray-1); }
+  .cmp-row-values { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .cmp-was {
+    font-family: 'Noto Sans', sans-serif; font-size: 13px; color: var(--color-gray-2);
+    text-decoration: line-through;
+  }
+  .cmp-arrow { color: var(--color-notification-success-600); display: flex; }
+  .cmp-now {
+    font-family: 'Noto Sans', sans-serif; font-size: 15px; font-weight: 700;
+    color: var(--color-ooredoo-black);
+  }
+  .cmp-now-sub { font-family: 'Noto Sans', sans-serif; font-size: 12px; color: var(--color-gray-1); }
+  .cmp-see { font-family: 'Noto Sans', sans-serif; font-size: 13px; font-weight: 700; color: var(--color-ooredoo-red); text-decoration: underline; margin-top: 6px; display: inline-block; }
+  /* unchanged (compact) */
+  .cmp-same-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 12px 4px; border-bottom: 1px solid var(--color-gray-5);
+  }
+  .cmp-same-row:last-child { border-bottom: none; }
+  .cmp-same-label { font-family: 'Noto Sans', sans-serif; font-size: 14px; color: var(--color-gray-1); }
+  .cmp-same-val { font-family: 'Noto Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--color-ooredoo-black); }
+
 </style>
 </head>
 <body>
@@ -1862,21 +2214,28 @@
       <h1>Ooredoo <span>Design System</span></h1>
       <p>Complete tokens, components, and patterns extracted from the My Ooredoo mobile app, encompassing base components and advanced change-plan flows.</p>
     </div>
-    <div class="ds-hero-badge">v1.0 (Complete) · 2025</div>
+    <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+      <a href="prototype-flow.html" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:6px;background:var(--color-ooredoo-red);color:#fff;font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;padding:10px 18px;border-radius:var(--radius-pill);text-decoration:none;white-space:nowrap">
+        Open Prototype Flow ↗
+      </a>
+      <div style="position:relative">
+        <button id="vh-btn" type="button" aria-expanded="false"
+          style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);font-family:'Rubik',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Version history
+        </button>
+        <div id="vh-panel" hidden
+          style="position:absolute;right:0;top:calc(100% + 8px);z-index:50;width:320px;max-height:360px;overflow:auto;background:#fff;color:var(--color-ooredoo-black);border:1px solid var(--color-gray-4);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);padding:14px 16px;text-align:left"></div>
+      </div>
+      <div class="ds-hero-badge">v1.0 (Complete) · 2025</div>
+    </div>
   </div>
 
   <div class="ds-layout">
 
     <!-- SIDEBAR NAV -->
     <nav class="ds-nav">
-      <div class="ds-nav-title" style="color:var(--color-ooredoo-red)">Prototype</div>
-      <a href="#prototype" style="color:var(--color-ooredoo-red);font-weight:700">Shift your Home+</a>
-      <div class="ds-nav-title" style="margin-top:12px">Foundations</div>
-      <a href="#colors">Colors</a>
-      <a href="#typography">Typography</a>
-      <a href="#spacing">Spacing</a>
-      <a href="#radius">Border Radius</a>
-      <a href="#shadows">Shadows</a>
       <div class="ds-nav-title" style="margin-top:12px">Core Components</div>
       <a href="#buttons">Buttons</a>
       <a href="#inputs">Inputs, States &amp; OTP</a>
@@ -1890,366 +2249,22 @@
       <a href="#picker">Picker</a>
 
       <a href="#selectors">Selectors</a>
-      <a href="#inline-message">Inline Message</a>
       <a href="#toast">Toast / Alerts</a>
       <a href="#links">Links &amp; Icons</a>
+      <a href="#inline-message">Inline Message</a>
+      <div class="ds-nav-title" style="margin-top:12px">Foundations</div>
+      <a href="#colors">Colors</a>
+      <a href="#typography">Typography</a>
+      <a href="#spacing">Spacing</a>
+      <a href="#radius">Border Radius</a>
+      <a href="#shadows">Shadows</a>
       <div class="ds-nav-title" style="margin-top:12px">Complex Components</div>
       <a href="#summary-card">Summary &amp; Allowances</a>
       <a href="#cart-bar">Cart Total Bar</a>
       <a href="#banners">Info &amp; Success Banners</a>
-      <a href="#checklist">Checklist (T&amp;C)</a>
-      <a href="#map">Map Component</a>
-      <div class="ds-nav-title" style="margin-top:12px">Patterns</div>
-      <a href="#screens">Screen Mockups</a>
     </nav>
 
     <main class="ds-content">
-
-      <!-- ══════════════ PROTOTYPE ══════════════ -->
-      <section class="ds-section" id="prototype">
-        <h2 class="ds-section-title">Prototype — Shift your Home+</h2>
-        <div class="ds-card">
-          <div class="proto-wrap">
-            <div class="proto-phone">
-
-              <!-- Status Bar -->
-              <div class="proto-statusbar">
-                <span>9:41</span>
-                <div class="proto-statusbar-icons">
-                  <!-- signal -->
-                  <svg width="17" height="12" viewBox="0 0 17 12" fill="none"><rect x="0" y="3" width="3" height="9" rx="1" fill="currentColor"/><rect x="4.5" y="2" width="3" height="10" rx="1" fill="currentColor"/><rect x="9" y="1" width="3" height="11" rx="1" fill="currentColor"/><rect x="13.5" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
-                  <!-- wifi -->
-                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none"><path d="M8 9.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" fill="currentColor"/><path d="M8 6C5.79 6 3.82 6.9 2.4 8.36l1.42 1.42A5.97 5.97 0 018 8a5.97 5.97 0 014.18 1.78l1.42-1.42A7.96 7.96 0 008 6z" fill="currentColor"/><path d="M8 2C4.7 2 1.73 3.4 0 5.7l1.41 1.41A9.95 9.95 0 018 4c2.55 0 4.87.96 6.59 2.53L16 5.12A11.95 11.95 0 008 2z" fill="currentColor"/></svg>
-                  <!-- battery -->
-                  <svg width="25" height="12" viewBox="0 0 25 12" fill="none"><rect x="0.5" y="0.5" width="21" height="11" rx="3.5" stroke="currentColor" stroke-opacity=".35"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/><path d="M23 4v4a2 2 0 000-4z" fill="currentColor" opacity=".4"/></svg>
-                </div>
-              </div>
-
-              <!-- Nav Bar -->
-              <div class="proto-nav">
-                <div class="proto-nav-back">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-                </div>
-                <div class="proto-nav-title">Shift your Home+</div>
-                <div class="proto-nav-spacer"></div>
-              </div>
-
-              <!-- Screen Body -->
-              <div class="proto-body">
-                <div class="proto-content">
-
-                  <!-- Heading -->
-                  <p class="proto-heading">Take your internet with you 🌐</p>
-                  <p class="proto-subtext">Moving home? We'll shift your Home+ without changing your number or interrupting your service.</p>
-
-                  <!-- Current Plan Card -->
-                  <div class="proto-plan-card">
-                    <div class="proto-plan-left">
-                      <span class="proto-plan-label">Current plan</span>
-                      <div class="proto-plan-row">
-                        <div class="proto-plan-icon">
-                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-ooredoo-red)" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-                        </div>
-                        <div>
-                          <div class="proto-plan-name">Home+ Go</div>
-                          <div class="proto-plan-account">66000723</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="proto-plan-right">
-                      <div class="proto-plan-price">
-                        <span class="proto-plan-currency">QR</span>
-                        <span class="proto-plan-amount">365</span>
-                        <span class="proto-plan-decimal">.00</span>
-                      </div>
-                      <span class="proto-plan-period">/month</span>
-                    </div>
-                  </div>
-
-                  <!-- Benefits Card -->
-                  <div class="proto-benefits">
-                    <p class="proto-benefits-title">Key relocation benefits</p>
-                    <div class="proto-benefit-item">
-                      <svg class="proto-benefit-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Zero service interruption
-                    </div>
-                    <div class="proto-benefit-item">
-                      <svg class="proto-benefit-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      No termination or activation required from your end
-                    </div>
-                    <div class="proto-benefit-item">
-                      <svg class="proto-benefit-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Fully digital execution
-                    </div>
-                    <div class="proto-benefit-item">
-                      <svg class="proto-benefit-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Shifting will be free of charge once a year
-                    </div>
-                    <div class="proto-benefit-item">
-                      <svg class="proto-benefit-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Add more Home plan for your location
-                    </div>
-                  </div>
-
-                </div>
-
-                <!-- CTA Button -->
-                <div class="proto-cta">
-                  <button class="btn btn-primary btn-full">Continue</button>
-                </div>
-
-                <!-- Home Indicator -->
-                <div class="proto-indicator">
-                  <div class="proto-indicator-bar"></div>
-                </div>
-
-              </div><!-- /proto-body -->
-            </div><!-- /proto-phone -->
-          </div><!-- /proto-wrap -->
-        </div>
-      </section>
-
-      <!-- ══════════════ COLORS ══════════════ -->
-      <section class="ds-section" id="colors">
-        <h2 class="ds-section-title">Colors</h2>
-
-        <div class="ds-card">
-          <p class="ds-sub-title">Primary</p>
-          <div class="swatch-grid">
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-ooredoo-red)"></div>
-              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 500</div><div class="swatch-hex">#ED1C24</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-ooredoo-red-dark)"></div>
-              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 700</div><div class="swatch-hex">#C8151C</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-ooredoo-black)"></div>
-              <div class="swatch-info"><div class="swatch-name">Ooredoo Black</div><div class="swatch-hex">#221E20</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-pure-white);border:1px solid #E0E0E0"></div>
-              <div class="swatch-info"><div class="swatch-name">Pure White</div><div class="swatch-hex">#FFFFFF</div></div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Secondary</p>
-          <div class="swatch-grid">
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-ooredoo-blue)"></div>
-              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 500</div><div class="swatch-hex">#0047BB</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-ooredoo-blue-dark)"></div>
-              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 800</div><div class="swatch-hex">#002A6E</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-dark-blue)"></div>
-              <div class="swatch-info"><div class="swatch-name">Dark Blue</div><div class="swatch-hex">#141B4D</div></div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Surface &amp; Fills</p>
-          <div class="swatch-grid">
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-bg-1);border:1px solid #E0E0E0"></div>
-              <div class="swatch-info"><div class="swatch-name">Background 1 / Resting</div><div class="swatch-hex">#FDFDFD</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-bg-2)"></div>
-              <div class="swatch-info"><div class="swatch-name">Background 2</div><div class="swatch-hex">#EBF0F0</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--selector-fill-disabled)"></div>
-              <div class="swatch-info"><div class="swatch-name">Fill Disabled</div><div class="swatch-hex">#F4F4F4</div></div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Semantic &amp; Notification</p>
-          <div class="swatch-grid">
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-success)"></div>
-              <div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#2D9E5A</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--success-600)"></div>
-              <div class="swatch-info"><div class="swatch-name">Success 600</div><div class="swatch-hex">#34B76D</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--success-100)"></div>
-              <div class="swatch-info"><div class="swatch-name">Success 100</div><div class="swatch-hex">#E6F4EC</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-warning)"></div>
-              <div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">#F5A623</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-error)"></div>
-              <div class="swatch-info"><div class="swatch-name">Error</div><div class="swatch-hex">#ED1C24</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--info-900)"></div>
-              <div class="swatch-info"><div class="swatch-name">Info 900</div><div class="swatch-hex">#37534E</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--info-100)"></div>
-              <div class="swatch-info"><div class="swatch-name">Info 100</div><div class="swatch-hex">#D8EEEA</div></div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Neutrals</p>
-          <div class="swatch-grid">
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-gray-1)"></div>
-              <div class="swatch-info"><div class="swatch-name">Base Gray 1</div><div class="swatch-hex">#6D6D6D</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-gray-2)"></div>
-              <div class="swatch-info"><div class="swatch-name">Base Gray 2</div><div class="swatch-hex">#8F8F8F</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--color-gray-4)"></div>
-              <div class="swatch-info"><div class="swatch-name">Light Gray 4</div><div class="swatch-hex">#E0E0E0</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--gray-1)"></div>
-              <div class="swatch-info"><div class="swatch-name">Stroke / Gray 1</div><div class="swatch-hex">#AAAAAA</div></div>
-            </div>
-            <div class="swatch">
-              <div class="swatch-color" style="background:var(--gray-2)"></div>
-              <div class="swatch-info"><div class="swatch-name">Text Gray 2</div><div class="swatch-hex">#898989</div></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════ TYPOGRAPHY ══════════════ -->
-      <section class="ds-section" id="typography">
-        <h2 class="ds-section-title">Typography</h2>
-        <div class="ds-card">
-          <p class="ds-sub-title">Rubik — Headings &amp; UI</p>
-          <div class="type-specimen">
-            <div class="type-row">
-              <div class="type-meta"><div class="label">H1 / Mobile</div><div class="spec">Rubik SemiBold · 36px · lh 44px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:36px;font-weight:600;line-height:44px;letter-spacing:-.02em">My Ooredoo</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">H2 / Mobile</div><div class="spec">Rubik SemiBold · 28px · lh 37px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:28px;font-weight:600;line-height:37px">Login to My Ooredoo 👋</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">H4 / Mobile</div><div class="spec">Rubik SemiBold · 22px · lh 24px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:22px;font-weight:600;line-height:24px;letter-spacing:-.01em">Enter the 4-digit code</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">H6 / Mobile</div><div class="spec">Rubik SemiBold · 18px · lh 24px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:18px;font-weight:600;line-height:24px">Change plan to Launchpad</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Body UI / Medium</div><div class="spec">Rubik Medium · 16px · lh 24px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:16px;font-weight:500;line-height:24px">Navigation label · Tab title</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Body UI / Regular</div><div class="spec">Rubik Regular · 14px · lh 20px</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:14px;font-weight:400;line-height:20px">By clicking Continue, you agree to our Terms.</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Button</div><div class="spec">Rubik SemiBold · 16px · ls +3%</div></div>
-              <div class="type-sample" style="font-family:'Rubik';font-size:16px;font-weight:600;letter-spacing:.03em">Log in · Continue</div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Noto Sans — Body &amp; Form</p>
-          <div class="type-specimen">
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Body B1</div><div class="spec">Noto Sans Regular · 18px · lh 28px</div></div>
-              <div class="type-sample" style="font-size:18px;line-height:28px">Keep your number or grab a new SIM.</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Body B2</div><div class="spec">Noto Sans Regular · 16px · lh 24px</div></div>
-              <div class="type-sample" style="font-size:16px;line-height:24px">Login with your <strong>username</strong> and <strong>password</strong>.</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Legend Lg1</div><div class="spec">Noto Sans Regular · 14px · lh 20px</div></div>
-              <div class="type-sample" style="font-size:14px;line-height:20px">Master SIM · Local data · Roaming Data</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Legend Lg2</div><div class="spec">Noto Sans Regular · 12px · lh 16px</div></div>
-              <div class="type-sample" style="font-size:12px;line-height:16px;color:var(--color-gray-1)">Existing Physical SIM · New eSIM</div>
-            </div>
-          </div>
-
-          <hr class="divider" />
-          <p class="ds-sub-title">Outfit — Numeric Display</p>
-          <div class="type-specimen">
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Display D2</div><div class="spec">Outfit ExtraBold · 26px · lh 34px · ls +0.5</div></div>
-              <div class="type-sample" style="font-family:'Outfit';font-size:26px;font-weight:800;line-height:34px;letter-spacing:.5px;text-transform:uppercase">249</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Nb2 / Bold</div><div class="spec">Outfit Bold · 18px · lh 100%</div></div>
-              <div class="type-sample" style="font-family:'Outfit';font-size:18px;font-weight:700;line-height:1">XXX</div>
-            </div>
-            <div class="type-row">
-              <div class="type-meta"><div class="label">Nb3 / Regular</div><div class="spec">Outfit Regular · 14px · uppercase</div></div>
-              <div class="type-sample" style="font-family:'Outfit';font-size:14px;text-transform:uppercase">33312XXX · 200 Mins</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════ SPACING & RADIUS ══════════════ -->
-      <section class="ds-section" id="spacing">
-        <h2 class="ds-section-title">Spacing &amp; Radius</h2>
-        <div class="two-col">
-          <div class="ds-card">
-            <p class="ds-sub-title">Spacing Scale</p>
-            <div class="spacing-grid">
-              <div class="spacing-swatch"><div class="spacing-box" style="width:4px;height:4px"></div><div class="spacing-label">4px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:8px;height:8px"></div><div class="spacing-label">8px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:12px;height:12px"></div><div class="spacing-label">12px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:16px;height:16px"></div><div class="spacing-label">16px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:20px;height:20px"></div><div class="spacing-label">20px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:24px;height:24px"></div><div class="spacing-label">24px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:32px;height:32px"></div><div class="spacing-label">32px</div></div>
-              <div class="spacing-swatch"><div class="spacing-box" style="width:40px;height:40px"></div><div class="spacing-label">40px</div></div>
-            </div>
-            <p style="font-size:13px;color:var(--color-gray-1);margin-top:16px">
-              Horizontal gutter: <strong style="color:var(--color-ooredoo-black)">24px</strong> each side. Content width on 375px: <strong style="color:var(--color-ooredoo-black)">327px</strong>.
-            </p>
-          </div>
-          <div class="ds-card" id="radius">
-            <p class="ds-sub-title">Border Radius</p>
-            <div class="radius-grid">
-              <div class="radius-swatch" style="border-radius:4px"><span>4px<br>sm</span></div>
-              <div class="radius-swatch" style="border-radius:8px"><span>8px<br>md</span></div>
-              <div class="radius-swatch" style="border-radius:12px"><span>12px<br>lg</span></div>
-              <div class="radius-swatch" style="border-radius:16px"><span>16px<br>xl</span></div>
-              <div class="radius-swatch" style="border-radius:24px"><span>24px<br>2xl</span></div>
-              <div class="radius-swatch" style="border-radius:100px; height: 32px"><span>100px<br>pill</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════ SHADOWS ══════════════ -->
-      <section class="ds-section" id="shadows">
-        <h2 class="ds-section-title">Shadows</h2>
-        <div class="ds-card">
-          <div class="shadow-row">
-            <div class="shadow-box" style="box-shadow:var(--shadow-sm)">shadow-sm</div>
-            <div class="shadow-box" style="box-shadow:var(--shadow-md)">shadow-md</div>
-            <div class="shadow-box" style="box-shadow:var(--shadow-lg)">shadow-lg</div>
-            <div class="shadow-box" style="box-shadow:var(--shadow-top)">shadow-top</div>
-          </div>
-        </div>
-      </section>
 
       <!-- ══════════════ BUTTONS ══════════════ -->
       <section class="ds-section" id="buttons">
@@ -3341,7 +3356,7 @@
                   <span class="ub-sub">Uploading…</span>
                 </div>
                 <div class="ub-actions">
-                  <div class="ub-spinner"><img src="https://www.figma.com/api/mcp/asset/a68c026d-1cd6-4a9f-9961-e6b9452d8966" alt="loading"></div>
+                  <div class="ub-spinner" role="status" aria-label="loading"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="13" stroke="var(--color-gray-4)" stroke-width="4"/><path d="M16 3a13 13 0 0 1 13 13" stroke="var(--color-ooredoo-red)" stroke-width="4" stroke-linecap="round"/></svg></div>
                   <img src="https://www.figma.com/api/mcp/asset/c5e27bce-7493-4624-b274-5c811c0c2433" alt="cancel" style="cursor:pointer" onclick="ubReset()">
                 </div>
               </div>
@@ -3477,7 +3492,7 @@
                   <span class="ub-sub">Uploading</span>
                 </div>
                 <div class="ub-actions">
-                  <div class="ub-spinner"><img src="https://www.figma.com/api/mcp/asset/a68c026d-1cd6-4a9f-9961-e6b9452d8966" alt="loading"></div>
+                  <div class="ub-spinner" role="status" aria-label="loading"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="16" cy="16" r="13" stroke="var(--color-gray-4)" stroke-width="4"/><path d="M16 3a13 13 0 0 1 13 13" stroke="var(--color-ooredoo-red)" stroke-width="4" stroke-linecap="round"/></svg></div>
                   <img src="https://www.figma.com/api/mcp/asset/c5e27bce-7493-4624-b274-5c811c0c2433" alt="cancel" style="cursor:pointer">
                 </div>
               </div>
@@ -3803,68 +3818,6 @@
         </div>
       </section>
 
-      <!-- ══════════════ SUMMARY & ALLOWANCES ══════════════ -->
-      <section class="ds-section" id="summary-card">
-        <h2 class="ds-section-title">Summary &amp; Allowances</h2>
-        <div class="two-col">
-          <div class="ds-card">
-            <p class="ds-sub-title">Order Summary Card</p>
-            <div class="summary-card">
-              <div class="summary-row"><span class="summary-label">Requested plan</span><span class="summary-value">Launchpad Pro</span></div>
-              <div class="summary-row">
-                <span class="summary-label">Monthly charge</span>
-                <div class="summary-value-price"><span class="summary-currency">QR</span><span class="summary-amount">249</span></div>
-              </div>
-              <div class="summary-row"><span class="summary-label">Lines added</span><span class="summary-value">3 out of 3</span></div>
-              <div class="summary-row"><span class="summary-label">Reference number</span><span class="summary-value">684568597709</span></div>
-              <button class="btn-outline-icon" style="margin-top:8px">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download receipt
-              </button>
-            </div>
-          </div>
-          
-          <div class="ds-card">
-            <p class="ds-sub-title">Allowance Bar List</p>
-            <div style="background:white;border:1px solid var(--color-gray-4);border-radius:var(--radius-md);padding:0 16px">
-              <div class="allowance-row">
-                <div>
-                  <div class="allowance-label">Data</div>
-                  <div class="allowance-bar-wrap"><div class="allowance-bar" style="width:60%"></div></div>
-                </div>
-                <div class="allowance-value">12 / 20 GB</div>
-              </div>
-              <div class="allowance-row">
-                <div>
-                  <div class="allowance-label">Calls</div>
-                  <div class="allowance-bar-wrap"><div class="allowance-bar" style="width:30%;background:var(--color-ooredoo-blue)"></div></div>
-                </div>
-                <div class="allowance-value">150 / 500 min</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════ CART TOTAL BAR ══════════════ -->
-      <section class="ds-section" id="cart-bar">
-        <h2 class="ds-section-title">Cart Total Bar</h2>
-        <div class="ds-card">
-          <p class="ds-sub-title">Sticky Bottom Sheet Panel</p>
-          <div class="cart-bar">
-            <div class="cart-row">
-              <div class="cart-label">Total monthly amount</div>
-              <div class="cart-price"><span class="cart-currency">QR</span><span class="cart-amount">249</span></div>
-            </div>
-            <div class="info-banner" style="margin-bottom:12px">
-              <svg style="flex-shrink:0;width:16px;height:16px;margin-top:2px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#D8EEEA" stroke="#37534E" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="12" stroke="#37534E" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="#37534E" stroke-width="2"/></svg>
-              <span>By clicking Continue, you agree to our <span class="link">Terms.</span></span>
-            </div>
-            <button class="btn btn-primary" style="width:100%">Continue</button>
-          </div>
-        </div>
-      </section>
-
       <!-- ══════════════ INLINE MESSAGE ══════════════ -->
       <section class="ds-section" id="inline-message">
         <h2 class="ds-section-title">Inline Message</h2>
@@ -3983,6 +3936,465 @@
         </div>
       </section>
 
+      <!-- ══════════════ COLORS ══════════════ -->
+      <section class="ds-section" id="colors">
+        <h2 class="ds-section-title">Colors</h2>
+
+        <div class="ds-card">
+          <p class="ds-sub-title">Primary</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-red)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 500</div><div class="swatch-hex">#ED1C24</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-red-dark)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 700</div><div class="swatch-hex">#C8151C</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-black)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Black</div><div class="swatch-hex">#221E20</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-pure-white);border:1px solid #E0E0E0"></div>
+              <div class="swatch-info"><div class="swatch-name">Pure White</div><div class="swatch-hex">#FFFFFF</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Secondary</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 500</div><div class="swatch-hex">#0047BB</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-dark)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 800</div><div class="swatch-hex">#002A6E</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-dark-blue)"></div>
+              <div class="swatch-info"><div class="swatch-name">Dark Blue</div><div class="swatch-hex">#141B4D</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Surface &amp; Fills</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-bg-1);border:1px solid #E0E0E0"></div>
+              <div class="swatch-info"><div class="swatch-name">Background 1 / Resting</div><div class="swatch-hex">#FDFDFD</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-bg-2)"></div>
+              <div class="swatch-info"><div class="swatch-name">Background 2</div><div class="swatch-hex">#EBF0F0</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--selector-fill-disabled)"></div>
+              <div class="swatch-info"><div class="swatch-name">Fill Disabled</div><div class="swatch-hex">#F4F4F4</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Semantic &amp; Notification</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-success)"></div>
+              <div class="swatch-info"><div class="swatch-name">Success</div><div class="swatch-hex">#2D9E5A</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--success-100)"></div>
+              <div class="swatch-info"><div class="swatch-name">Success 100</div><div class="swatch-hex">#E6F4EC</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-warning)"></div>
+              <div class="swatch-info"><div class="swatch-name">Warning</div><div class="swatch-hex">#F5A623</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-error)"></div>
+              <div class="swatch-info"><div class="swatch-name">Error</div><div class="swatch-hex">#ED1C24</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Neutrals</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-gray-1)"></div>
+              <div class="swatch-info"><div class="swatch-name">Base Gray 1</div><div class="swatch-hex">#6D6D6D</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-gray-2)"></div>
+              <div class="swatch-info"><div class="swatch-name">Base Gray 2</div><div class="swatch-hex">#8F8F8F</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-gray-4)"></div>
+              <div class="swatch-info"><div class="swatch-name">Light Gray 4</div><div class="swatch-hex">#E0E0E0</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--gray-1)"></div>
+              <div class="swatch-info"><div class="swatch-name">Stroke / Gray 1</div><div class="swatch-hex">#AAAAAA</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--gray-2)"></div>
+              <div class="swatch-info"><div class="swatch-name">Text Gray 2</div><div class="swatch-hex">#898989</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Border</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-border-primary);border:1px solid #E0E0E0"></div>
+              <div class="swatch-info"><div class="swatch-name">Border Primary</div><div class="swatch-hex">#E9E9EB</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Ooredoo Blue Scale <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/primary/blue</span></p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-25)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 25</div><div class="swatch-hex">#EEF4F8</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-50)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 50</div><div class="swatch-hex">#E5EFFF</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-100)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 100</div><div class="swatch-hex">#B6CDF2</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-200)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 200</div><div class="swatch-hex">#9DBEF2</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-300)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 300</div><div class="swatch-hex">#739FE5</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-400)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 400</div><div class="swatch-hex">#3F78D4</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-500)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 500</div><div class="swatch-hex">#0047BB</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-600)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 600</div><div class="swatch-hex">#003DA1</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-700)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 700</div><div class="swatch-hex">#003387</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-800)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 800</div><div class="swatch-hex">#002A6E</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-blue-900)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Blue 900</div><div class="swatch-hex">#002054</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Ooredoo Red Tints <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— from Figma variables</span></p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-red-100)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 100</div><div class="swatch-hex">#F9B9BB</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-ooredoo-red-200)"></div>
+              <div class="swatch-info"><div class="swatch-name">Ooredoo Red 200</div><div class="swatch-hex">#F7979A</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">CTA Selector States <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— from Figma variables</span></p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-action-hover)"></div>
+              <div class="swatch-info"><div class="swatch-name">Action Hover</div><div class="swatch-hex">#A91419</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-action-focus)"></div>
+              <div class="swatch-info"><div class="swatch-name">Action Focus</div><div class="swatch-hex">#800F15</div></div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:var(--color-bg-grey-200)"></div>
+              <div class="swatch-info"><div class="swatch-name">Background Grey 200</div><div class="swatch-hex">#DFE7E7</div></div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Notification · Success <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/statuses/success</span></p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-50)"></div><div class="swatch-info"><div class="swatch-name">Success 50</div><div class="swatch-hex">#EBFAF2</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-100)"></div><div class="swatch-info"><div class="swatch-name">Success 100</div><div class="swatch-hex">#C3EFD5</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-200)"></div><div class="swatch-info"><div class="swatch-name">Success 200</div><div class="swatch-hex">#A2E6C0</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-300)"></div><div class="swatch-info"><div class="swatch-name">Success 300</div><div class="swatch-hex">#7ADCA4</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-400)"></div><div class="swatch-info"><div class="swatch-name">Success 400</div><div class="swatch-hex">#62D594</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-500)"></div><div class="swatch-info"><div class="swatch-name">Success 500</div><div class="swatch-hex">#39CB78</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-600)"></div><div class="swatch-info"><div class="swatch-name">Success 600</div><div class="swatch-hex">#34B76D</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-700)"></div><div class="swatch-info"><div class="swatch-name">Success 700</div><div class="swatch-hex">#279055</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-800)"></div><div class="swatch-info"><div class="swatch-name">Success 800</div><div class="swatch-hex">#1F7042</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-success-900)"></div><div class="swatch-info"><div class="swatch-name">Success 900</div><div class="swatch-hex">#185432</div></div></div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Notification · Warning <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/statuses/warning</span></p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-50)"></div><div class="swatch-info"><div class="swatch-name">Warning 50</div><div class="swatch-hex">#FEF9E7</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-100)"></div><div class="swatch-info"><div class="swatch-name">Warning 100</div><div class="swatch-hex">#FBEDB1</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-200)"></div><div class="swatch-info"><div class="swatch-name">Warning 200</div><div class="swatch-hex">#F9E58B</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-300)"></div><div class="swatch-info"><div class="swatch-name">Warning 300</div><div class="swatch-hex">#F6D955</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-400)"></div><div class="swatch-info"><div class="swatch-name">Warning 400</div><div class="swatch-hex">#F4D134</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-500)"></div><div class="swatch-info"><div class="swatch-name">Warning 500</div><div class="swatch-hex">#F1C400</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-600)"></div><div class="swatch-info"><div class="swatch-name">Warning 600</div><div class="swatch-hex">#DBB300</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-700)"></div><div class="swatch-info"><div class="swatch-name">Warning 700</div><div class="swatch-hex">#AD8E00</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-800)"></div><div class="swatch-info"><div class="swatch-name">Warning 800</div><div class="swatch-hex">#856C00</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-warning-900)"></div><div class="swatch-info"><div class="swatch-name">Warning 900</div><div class="swatch-hex">#665300</div></div></div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Notification · Info <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/statuses/info</span></p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-50)"></div><div class="swatch-info"><div class="swatch-name">Info 50</div><div class="swatch-hex">#F4FAF9</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-100)"></div><div class="swatch-info"><div class="swatch-name">Info 100</div><div class="swatch-hex">#D8EEEA</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-200)"></div><div class="swatch-info"><div class="swatch-name">Info 200</div><div class="swatch-hex">#C7E6E0</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-300)"></div><div class="swatch-info"><div class="swatch-name">Info 300</div><div class="swatch-hex">#AFDAD2</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-400)"></div><div class="swatch-info"><div class="swatch-name">Info 400</div><div class="swatch-hex">#9CD3C9</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-500)"></div><div class="swatch-info"><div class="swatch-name">Info 500</div><div class="swatch-hex">#86C8BC</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-600)"></div><div class="swatch-info"><div class="swatch-name">Info 600</div><div class="swatch-hex">#7BB7AC</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-700)"></div><div class="swatch-info"><div class="swatch-name">Info 700</div><div class="swatch-hex">#5E8D84</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-800)"></div><div class="swatch-info"><div class="swatch-name">Info 800</div><div class="swatch-hex">#496E67</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-info-900)"></div><div class="swatch-info"><div class="swatch-name">Info 900</div><div class="swatch-hex">#37534E</div></div></div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Notification · Danger <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/statuses/danger</span></p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-50)"></div><div class="swatch-info"><div class="swatch-name">Danger 50</div><div class="swatch-hex">#FDE8E9</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-100)"></div><div class="swatch-info"><div class="swatch-name">Danger 100</div><div class="swatch-hex">#FFCCCE</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-200)"></div><div class="swatch-info"><div class="swatch-name">Danger 200</div><div class="swatch-hex">#FFB2B5</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-300)"></div><div class="swatch-info"><div class="swatch-name">Danger 300</div><div class="swatch-hex">#FF999C</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-400)"></div><div class="swatch-info"><div class="swatch-name">Danger 400</div><div class="swatch-hex">#FF7377</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-500)"></div><div class="swatch-info"><div class="swatch-name">Danger 500</div><div class="swatch-hex">#FF585D</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-600)"></div><div class="swatch-info"><div class="swatch-name">Danger 600</div><div class="swatch-hex">#E52228</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-700)"></div><div class="swatch-info"><div class="swatch-name">Danger 700</div><div class="swatch-hex">#B21217</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-800)"></div><div class="swatch-info"><div class="swatch-name">Danger 800</div><div class="swatch-hex">#8C070B</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-notification-danger-900)"></div><div class="swatch-info"><div class="swatch-name">Danger 900</div><div class="swatch-hex">#660003</div></div></div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Monotone <span style="text-transform:none;font-weight:400;color:var(--color-gray-1)">— colors/monotone</span></p>
+          <div class="swatch-grid">
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-white);border:1px solid #E0E0E0"></div><div class="swatch-info"><div class="swatch-name">Mono White</div><div class="swatch-hex">#FFFFFF</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-50);border:1px solid #E0E0E0"></div><div class="swatch-info"><div class="swatch-name">Mono Gray 50</div><div class="swatch-hex">#F9F9F9</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-100);border:1px solid #E0E0E0"></div><div class="swatch-info"><div class="swatch-name">Mono Gray 100</div><div class="swatch-hex">#F4F4F4</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-200)"></div><div class="swatch-info"><div class="swatch-name">Mono Gray 200</div><div class="swatch-hex">#EEEEEE</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-300)"></div><div class="swatch-info"><div class="swatch-name">Mono Gray 300</div><div class="swatch-hex">#E0E0E0</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-dark-gray-100)"></div><div class="swatch-info"><div class="swatch-name">Mono Dark Gray 100</div><div class="swatch-hex">#AAAAAA</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-dark-gray-200)"></div><div class="swatch-info"><div class="swatch-name">Mono Dark Gray 200</div><div class="swatch-hex">#898989</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-dark-gray-300)"></div><div class="swatch-info"><div class="swatch-name">Mono Dark Gray 300</div><div class="swatch-hex">#6D6D6D</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-dark-gray-400)"></div><div class="swatch-info"><div class="swatch-name">Mono Dark Gray 400</div><div class="swatch-hex">#595959</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-blue-50);border:1px solid #E0E0E0"></div><div class="swatch-info"><div class="swatch-name">Mono Gray Blue 50</div><div class="swatch-hex">#FDFDFD</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-blue-100)"></div><div class="swatch-info"><div class="swatch-name">Mono Gray Blue 100</div><div class="swatch-hex">#EBF0F0</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-blue-200)"></div><div class="swatch-info"><div class="swatch-name">Mono Gray Blue 200</div><div class="swatch-hex">#DFE7E7</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-gray-blue-300)"></div><div class="swatch-info"><div class="swatch-name">Mono Gray Blue 300</div><div class="swatch-hex">#EEF4F8</div></div></div>
+            <div class="swatch"><div class="swatch-color" style="background:var(--color-mono-black)"></div><div class="swatch-info"><div class="swatch-name">Mono Black</div><div class="swatch-hex">#221E20</div></div></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════ TYPOGRAPHY ══════════════ -->
+      <section class="ds-section" id="typography">
+        <h2 class="ds-section-title">Typography</h2>
+        <div class="ds-card">
+          <p class="ds-sub-title">Rubik — Headings &amp; UI</p>
+          <div class="type-specimen">
+            <div class="type-row">
+              <div class="type-meta"><div class="label">H1 / Mobile</div><div class="spec">Rubik SemiBold · 36px · lh 44px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:36px;font-weight:600;line-height:44px;letter-spacing:-.02em">My Ooredoo</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">H2 / Mobile</div><div class="spec">Rubik SemiBold · 28px · lh 37px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:28px;font-weight:600;line-height:37px">Login to My Ooredoo 👋</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">H4 / Mobile</div><div class="spec">Rubik SemiBold · 22px · lh 24px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:22px;font-weight:600;line-height:24px;letter-spacing:-.01em">Enter the 4-digit code</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">H6 / Mobile</div><div class="spec">Rubik SemiBold · 18px · lh 24px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:18px;font-weight:600;line-height:24px">Change plan to Launchpad</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Body UI / Medium</div><div class="spec">Rubik Medium · 16px · lh 24px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:16px;font-weight:500;line-height:24px">Navigation label · Tab title</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Body UI / Regular</div><div class="spec">Rubik Regular · 14px · lh 20px</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:14px;font-weight:400;line-height:20px">By clicking Continue, you agree to our Terms.</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Button</div><div class="spec">Rubik SemiBold · 16px · ls +3%</div></div>
+              <div class="type-sample" style="font-family:'Rubik';font-size:16px;font-weight:600;letter-spacing:.03em">Log in · Continue</div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Noto Sans — Body &amp; Form</p>
+          <div class="type-specimen">
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Body B1</div><div class="spec">Noto Sans Regular · 18px · lh 28px</div></div>
+              <div class="type-sample" style="font-size:18px;line-height:28px">Keep your number or grab a new SIM.</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Body B2</div><div class="spec">Noto Sans Regular · 16px · lh 24px</div></div>
+              <div class="type-sample" style="font-size:16px;line-height:24px">Login with your <strong>username</strong> and <strong>password</strong>.</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Legend Lg1</div><div class="spec">Noto Sans Regular · 14px · lh 20px</div></div>
+              <div class="type-sample" style="font-size:14px;line-height:20px">Master SIM · Local data · Roaming Data</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Legend Lg2</div><div class="spec">Noto Sans Regular · 12px · lh 16px</div></div>
+              <div class="type-sample" style="font-size:12px;line-height:16px;color:var(--color-gray-1)">Existing Physical SIM · New eSIM</div>
+            </div>
+          </div>
+
+          <hr class="divider" />
+          <p class="ds-sub-title">Outfit — Numeric Display</p>
+          <div class="type-specimen">
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Display D2</div><div class="spec">Outfit ExtraBold · 26px · lh 34px · ls +0.5</div></div>
+              <div class="type-sample" style="font-family:'Outfit';font-size:26px;font-weight:800;line-height:34px;letter-spacing:.5px;text-transform:uppercase">249</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Nb2 / Bold</div><div class="spec">Outfit Bold · 18px · lh 100%</div></div>
+              <div class="type-sample" style="font-family:'Outfit';font-size:18px;font-weight:700;line-height:1">XXX</div>
+            </div>
+            <div class="type-row">
+              <div class="type-meta"><div class="label">Nb3 / Regular</div><div class="spec">Outfit Regular · 14px · uppercase</div></div>
+              <div class="type-sample" style="font-family:'Outfit';font-size:14px;text-transform:uppercase">33312XXX · 200 Mins</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════ SPACING & RADIUS ══════════════ -->
+      <section class="ds-section" id="spacing">
+        <h2 class="ds-section-title">Spacing &amp; Radius</h2>
+        <div class="two-col">
+          <div class="ds-card">
+            <p class="ds-sub-title">Spacing Scale</p>
+            <div class="spacing-grid">
+              <div class="spacing-swatch"><div class="spacing-box" style="width:4px;height:4px"></div><div class="spacing-label">4px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:8px;height:8px"></div><div class="spacing-label">8px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:12px;height:12px"></div><div class="spacing-label">12px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:16px;height:16px"></div><div class="spacing-label">16px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:20px;height:20px"></div><div class="spacing-label">20px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:24px;height:24px"></div><div class="spacing-label">24px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:32px;height:32px"></div><div class="spacing-label">32px</div></div>
+              <div class="spacing-swatch"><div class="spacing-box" style="width:40px;height:40px"></div><div class="spacing-label">40px</div></div>
+            </div>
+            <p style="font-size:13px;color:var(--color-gray-1);margin-top:16px">
+              Horizontal gutter: <strong style="color:var(--color-ooredoo-black)">24px</strong> each side. Content width on 375px: <strong style="color:var(--color-ooredoo-black)">327px</strong>.
+            </p>
+          </div>
+          <div class="ds-card" id="radius">
+            <p class="ds-sub-title">Border Radius</p>
+            <div class="radius-grid">
+              <div class="radius-swatch" style="border-radius:4px"><span>4px<br>sm</span></div>
+              <div class="radius-swatch" style="border-radius:8px"><span>8px<br>md</span></div>
+              <div class="radius-swatch" style="border-radius:12px"><span>12px<br>lg</span></div>
+              <div class="radius-swatch" style="border-radius:16px"><span>16px<br>xl</span></div>
+              <div class="radius-swatch" style="border-radius:24px"><span>24px<br>2xl</span></div>
+              <div class="radius-swatch" style="border-radius:100px; height: 32px"><span>100px<br>pill</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════ SHADOWS ══════════════ -->
+      <section class="ds-section" id="shadows">
+        <h2 class="ds-section-title">Shadows</h2>
+        <div class="ds-card">
+          <div class="shadow-row">
+            <div class="shadow-box" style="box-shadow:var(--shadow-sm)">shadow-sm</div>
+            <div class="shadow-box" style="box-shadow:var(--shadow-md)">shadow-md</div>
+            <div class="shadow-box" style="box-shadow:var(--shadow-lg)">shadow-lg</div>
+            <div class="shadow-box" style="box-shadow:var(--shadow-top)">shadow-top</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════ SUMMARY & ALLOWANCES ══════════════ -->
+      <section class="ds-section" id="summary-card">
+        <h2 class="ds-section-title">Summary &amp; Allowances</h2>
+        <div class="two-col">
+          <div class="ds-card">
+            <p class="ds-sub-title">Order Summary Card</p>
+            <div class="summary-card">
+              <div class="summary-row"><span class="summary-label">Requested plan</span><span class="summary-value">Launchpad Pro</span></div>
+              <div class="summary-row">
+                <span class="summary-label">Monthly charge</span>
+                <div class="summary-value-price"><span class="summary-currency">QR</span><span class="summary-amount">249</span></div>
+              </div>
+              <div class="summary-row"><span class="summary-label">Lines added</span><span class="summary-value">3 out of 3</span></div>
+              <div class="summary-row"><span class="summary-label">Reference number</span><span class="summary-value">684568597709</span></div>
+              <button class="btn-outline-icon" style="margin-top:8px">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download receipt
+              </button>
+            </div>
+          </div>
+          
+          <div class="ds-card">
+            <p class="ds-sub-title">Allowance Bar List</p>
+            <div style="background:white;border:1px solid var(--color-gray-4);border-radius:var(--radius-md);padding:0 16px">
+              <div class="allowance-row">
+                <div>
+                  <div class="allowance-label">Data</div>
+                  <div class="allowance-bar-wrap"><div class="allowance-bar" style="width:60%"></div></div>
+                </div>
+                <div class="allowance-value">12 / 20 GB</div>
+              </div>
+              <div class="allowance-row">
+                <div>
+                  <div class="allowance-label">Calls</div>
+                  <div class="allowance-bar-wrap"><div class="allowance-bar" style="width:30%;background:var(--color-ooredoo-blue)"></div></div>
+                </div>
+                <div class="allowance-value">150 / 500 min</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════ CART TOTAL BAR ══════════════ -->
+      <section class="ds-section" id="cart-bar">
+        <h2 class="ds-section-title">Cart Total Bar</h2>
+        <div class="ds-card">
+          <p class="ds-sub-title">Sticky Bottom Sheet Panel</p>
+          <div class="cart-bar">
+            <div class="cart-row">
+              <div class="cart-label">Total monthly amount</div>
+              <div class="cart-price"><span class="cart-currency">QR</span><span class="cart-amount">249</span></div>
+            </div>
+            <div class="info-banner" style="margin-bottom:12px">
+              <svg style="flex-shrink:0;width:16px;height:16px;margin-top:2px" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" fill="#D8EEEA" stroke="#37534E" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="12" stroke="#37534E" stroke-width="2"/><line x1="12" y1="16" x2="12.01" y2="16" stroke="#37534E" stroke-width="2"/></svg>
+              <span>By clicking Continue, you agree to our <span class="link">Terms.</span></span>
+            </div>
+            <button class="btn btn-primary" style="width:100%">Continue</button>
+          </div>
+        </div>
+      </section>
+
       <!-- ══════════════ BANNERS & FEEDBACK ══════════════ -->
       <section class="ds-section" id="banners">
         <h2 class="ds-section-title">Info &amp; Success Banners</h2>
@@ -3997,172 +4409,6 @@
           </div>
         </div>
       </section>
-
-      <!-- ══════════════ CHECKLIST & MAP ══════════════ -->
-      <section class="ds-section" id="checklist">
-        <h2 class="ds-section-title">Checklist &amp; Maps</h2>
-        <div class="two-col">
-          <div class="ds-card">
-            <p class="ds-sub-title">T&amp;C Checklist</p>
-            <p class="checklist-section-title" style="margin-top:0">What's included in your plan</p>
-            <ul class="checklist">
-              <li>20 GB local data allowance per month</li>
-              <li>Unlimited local calls and SMS to all networks</li>
-              <li>25 GB roaming data across 100+ countries</li>
-            </ul>
-            <p class="checklist-section-title" style="margin-top:20px">Billing &amp; Changes</p>
-            <ul class="checklist">
-              <li>Monthly charges apply from your next billing cycle</li>
-              <li>Plan changes take effect within 24 hours of approval</li>
-            </ul>
-          </div>
-
-          <div class="ds-card" id="map">
-            <p class="ds-sub-title">Map Widget</p>
-            <div style="border-radius:var(--radius-lg);overflow:hidden;border:1px solid #E0E0E0">
-              <div class="map-container">
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0">
-                  <defs><pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M 32 0 L 0 0 0 32" fill="none" stroke="#B8CDB8" stroke-width="0.5"/></pattern></defs>
-                  <rect width="100%" height="100%" fill="#D4E3D4"/>
-                  <rect width="100%" height="100%" fill="url(#grid)"/>
-                  <line x1="0" y1="100" x2="100%" y2="100" stroke="#EEF4EE" stroke-width="6"/>
-                  <line x1="150" y1="0" x2="150" y2="100%" stroke="#EEF4EE" stroke-width="4"/>
-                </svg>
-                <div class="map-search-bar">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  <span style="font-size:13px;color:var(--black)">Umm Ghuwailina</span>
-                </div>
-                <div class="map-pin" style="left:50%;top:55%">
-                  <svg width="28" height="38" viewBox="0 0 24 32" fill="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 9 12 20 12 20s12-11 12-20C24 5.37 18.63 0 12 0z" fill="#ED1C24"/><circle cx="12" cy="12" r="5" fill="white"/></svg>
-                </div>
-                <div class="map-actions">
-                  <button class="map-action-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></button>
-                  <button class="map-action-btn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></button>
-                </div>
-              </div>
-              <div class="map-location-row">
-                <div class="map-location-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--color-ooredoo-red)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-                <div class="map-location-text">
-                  <div class="map-location-addr">Al Wahda Street, Umm Ghuwailina</div>
-                  <div class="map-location-sub">Zone 25, Street 9, Building 15</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ══════════════ SCREEN MOCKUPS ══════════════ -->
-      <section class="ds-section" id="screens">
-        <h2 class="ds-section-title">Screen Patterns</h2>
-        <div class="ds-card">
-          <p class="ds-sub-title">Authentication &amp; Transaction Flows</p>
-          <div class="mockups">
-
-            <!-- Screen 1: Login OTP -->
-            <div>
-              <p style="font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--color-gray-1);margin-bottom:10px;font-weight:600">OTP Login</p>
-              <div class="phone-shell">
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 8px 0;font-family:'Rubik';font-size:11px;font-weight:600;color:var(--color-ooredoo-black)">
-                  <span>Login</span><span style="font-size:9px">✕</span>
-                </div>
-                <div style="background:white;border-radius:14px;margin-top:8px;padding:12px 10px 16px">
-                  <div style="font-family:'Rubik';font-size:14px;font-weight:700;color:var(--color-ooredoo-black);line-height:1.2;margin-bottom:6px">Login to<br>My Ooredoo 👋</div>
-                  <div style="font-size:9px;color:var(--color-gray-1);line-height:1.4;margin-bottom:12px">Login with mobile number. It should start with <strong style="color:var(--color-ooredoo-black)">3, 5, 6 or 7</strong>.</div>
-                  <div style="display:flex;gap:5px;margin-bottom:12px">
-                    <div style="background:var(--color-fill-disabled);border:1px solid var(--color-stroke-disabled);border-radius:5px;padding:6px 7px;font-size:9px;color:var(--color-text-disabled);white-space:nowrap">🇶🇦 974</div>
-                    <div style="flex:1;background:white;border:1px solid var(--color-stroke-empty);border-radius:5px;padding:6px 7px;font-size:9px;color:var(--color-text-empty)">Mobile number</div>
-                  </div>
-                  <div style="background:var(--color-ooredoo-red);border-radius:50px;padding:7px;text-align:center;font-family:'Rubik';font-size:10px;font-weight:600;color:white">Continue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Screen 2: Confirm Change -->
-            <div>
-              <p style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--color-gray-2);margin-bottom:10px;font-weight:700">Confirm Change</p>
-              <div class="phone-shell">
-                <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 8px 0;font-family:'Rubik';font-size:10px;font-weight:600;color:var(--black)">
-                  <span>←</span>
-                  <div style="text-align:center"><div style="font-weight:600">Change plan</div><div style="font-size:8px;font-weight:400;color:var(--gray-3)">to Launchpad Pro</div></div>
-                  <span>✕</span>
-                </div>
-                <div class="phone-screen" style="margin-top:8px;padding:10px 8px 0">
-                  <div style="font-family:'Rubik';font-size:12px;font-weight:700;color:var(--black);margin-bottom:4px">Confirm plan change</div>
-                  <div style="font-size:8px;color:var(--gray-3);margin-bottom:10px">Please review your selections before submitting.</div>
-                  <div style="border:1px solid #AAA;border-radius:8px;overflow:hidden;margin-bottom:8px">
-                    <div style="padding:6px 8px;font-family:'Rubik';font-size:9px;font-weight:500;background:white;border-bottom:1px solid #E8E8E8">Added SIM's (3/3)</div>
-                    <div style="background:#F4F4F4;padding:6px 8px;font-size:8px;color:var(--gray-3)">
-                      <div style="display:flex;justify-content:space-between;margin-bottom:3px"><span>Master SIM</span><span style="font-family:'Outfit'">33312XXX</span></div>
-                      <div style="margin-bottom:2px"><span>Data SIM 1</span><br><span style="color:#6D6D6D;font-size:7px">Existing Physical SIM</span></div>
-                      <div><span style="display:flex;align-items:center;gap:3px">Data SIM 2 <span style="background:#D8EEEA;color:#37534E;font-size:7px;padding:1px 4px;border-radius:3px">New eSIM</span></span></div>
-                    </div>
-                  </div>
-                </div>
-                <!-- Cart bar mobile -->
-                <div style="background:white;border-radius:10px 10px 0 0;box-shadow:0 0 8px rgba(0,0,0,.2);padding:8px 8px 14px;margin-top:4px">
-                  <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px">
-                    <span style="font-family:'Rubik';font-size:9px;font-weight:500">Total monthly</span>
-                    <span><span style="font-family:'Rubik';font-size:8px;color:var(--gray-2)">QR</span><span style="font-family:'Outfit';font-size:14px;font-weight:800"> 249</span></span>
-                  </div>
-                  <div style="background:#D8EEEA;border-radius:3px;padding:4px 6px;font-size:7px;color:#37534E;margin-bottom:6px">Agree to <u>Terms &amp; Conditions.</u></div>
-                  <div style="background:var(--red);border-radius:50px;padding:5px;text-align:center;font-family:'Rubik';font-size:9px;font-weight:600;color:white">Continue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Screen 3: Success -->
-            <div>
-              <p style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--color-gray-2);margin-bottom:10px;font-weight:700">Success Feedback</p>
-              <div class="phone-shell" style="background:white">
-                <div style="display:flex;justify-content:flex-end;padding:8px 8px 0">
-                  <span style="font-size:10px;color:var(--gray-3)">✕</span>
-                </div>
-                <div class="phone-screen" style="padding:12px 10px 16px;text-align:center">
-                  <div style="width:32px;height:32px;border-radius:50%;background:var(--success-600);display:flex;align-items:center;justify-content:center;margin:0 auto 10px">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
-                  </div>
-                  <div style="font-family:'Rubik';font-size:11px;font-weight:700;margin-bottom:6px;line-height:1.3">Submitted change request!</div>
-                  <div style="font-size:8px;color:var(--gray-3);margin-bottom:8px;line-height:1.4">Your request has been processed. Benefits activate once admin confirms.</div>
-                  <div style="border:0.5px solid #AAA;border-radius:8px;padding:8px;text-align:left">
-                    <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:8px"><span style="color:#898989">Requested plan</span><span style="font-weight:500">Launchpad Pro</span></div>
-                    <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:8px"><span style="color:#898989">Monthly charge</span><span><span style="font-size:7px;color:#898989">QR </span><span style="font-family:'Outfit';font-weight:700">249</span></span></div>
-                    <div style="display:flex;justify-content:space-between;margin-bottom:5px;font-size:8px"><span style="color:#898989">Lines added</span><span>3 out of 3</span></div>
-                    <div style="border:1.5px solid var(--red);border-radius:50px;padding:4px 8px;text-align:center;font-family:'Rubik';font-size:8px;font-weight:700;color:var(--red);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:4px">
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                      Download receipt
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Screen 4: T&C Drawer -->
-            <div>
-              <p style="font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--color-gray-2);margin-bottom:10px;font-weight:700">T&amp;C Drawer</p>
-              <div class="phone-shell" style="background:white">
-                <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 8px;font-family:'Rubik';font-size:10px;font-weight:600;color:var(--black);border-bottom:1px solid #E8E8E8">
-                  <span>Terms &amp; Conditions</span><span>✕</span>
-                </div>
-                <div class="phone-screen" style="padding:10px 10px 16px">
-                  <p style="font-family:'Rubik';font-size:9px;font-weight:600;margin-bottom:6px">What's included</p>
-                  <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:8px;color:var(--black)">
-                    <li style="display:flex;gap:5px;align-items:flex-start"><span style="width:12px;height:12px;border-radius:50%;background:var(--success-600);flex-shrink:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E&quot;);background-size:7px;background-repeat:no-repeat;background-position:center"></span>20 GB local data allowance per month</li>
-                    <li style="display:flex;gap:5px;align-items:flex-start"><span style="width:12px;height:12px;border-radius:50%;background:var(--success-600);flex-shrink:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E&quot;);background-size:7px;background-repeat:no-repeat;background-position:center"></span>Unlimited local calls and SMS</li>
-                    <li style="display:flex;gap:5px;align-items:flex-start"><span style="width:12px;height:12px;border-radius:50%;background:var(--success-600);flex-shrink:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E&quot;);background-size:7px;background-repeat:no-repeat;background-position:center"></span>200 international minutes</li>
-                  </ul>
-                  <p style="font-family:'Rubik';font-size:9px;font-weight:600;margin:10px 0 6px">Billing &amp; Changes</p>
-                  <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;font-size:8px;color:var(--black)">
-                    <li style="display:flex;gap:5px;align-items:flex-start"><span style="width:12px;height:12px;border-radius:50%;background:var(--success-600);flex-shrink:0;background-image:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E&quot;);background-size:7px;background-repeat:no-repeat;background-position:center"></span>Monthly charges from next billing cycle</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
 
     </main>
   </div>
@@ -4211,7 +4457,7 @@
   /* ── Toast live demo ── */
   window.showLiveToast = function(statusClass) {
     const labels = { 'toast-neutral': 'Notification', 'toast-negative': 'Error', 'toast-positive': 'Success' };
-    const bodies  = { 'toast-neutral': 'We've sent the verification code to your number.', 'toast-negative': 'Something went wrong. Please try again.', 'toast-positive': 'Your plan has been updated successfully.' };
+    const bodies  = { 'toast-neutral': "We've sent the verification code to your number.", 'toast-negative': 'Something went wrong. Please try again.', 'toast-positive': 'Your plan has been updated successfully.' };
     const area = document.getElementById('live-toast-area');
     const t = document.createElement('div');
     t.className = `toast ${statusClass}`;
@@ -4231,6 +4477,107 @@
     });
     setTimeout(() => { if (t.parentNode) { t.classList.add('toast-hiding'); setTimeout(() => t.remove(), 280); } }, 4000);
   };
+
+  /* ── Fix broken Figma-hosted icon images → inline SVG data URIs ── */
+  (function () {
+    const G = '#6D6D6D', GREEN = '#2D9E5A', RED = '#ED1C24';
+    const svg = (inner) => 'data:image/svg+xml;utf8,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">' + inner + '</svg>');
+    const S = (d, c, w) => '<path d="' + d + '" stroke="' + c + '" stroke-width="' + (w||2) + '" stroke-linecap="round" stroke-linejoin="round"/>';
+
+    const ICON = {
+      caret:   svg(S('M6 9l6 6 6-6', G)),
+      check:   svg(S('M5 12l4.5 4.5L19 6', GREEN, 2.2)),
+      done:    svg('<circle cx="12" cy="12" r="9" stroke="' + GREEN + '" stroke-width="2"/>' + S('M8 12l2.5 2.5L16 9', GREEN, 2)),
+      cancel:  svg(S('M6 6l12 12M18 6L6 18', G)),
+      clear:   svg('<circle cx="12" cy="12" r="9" stroke="' + G + '" stroke-width="2"/>' + S('M9 9l6 6M15 9l-6 6', G)),
+      hint:    svg('<circle cx="12" cy="12" r="9" stroke="' + G + '" stroke-width="2"/>' + S('M12 11v5', G) + '<circle cx="12" cy="7.8" r="1.1" fill="' + G + '"/>'),
+      error:   svg('<path d="M12 3l9.5 16.5H2.5L12 3z" stroke="' + RED + '" stroke-width="2" stroke-linejoin="round"/>' + S('M12 9.5v4.5', RED) + '<circle cx="12" cy="16.7" r="1.1" fill="' + RED + '"/>'),
+      del:     svg(S('M5 7h14M9 7V5h6v2M7 7l1 12h8l1-12', G)),
+      lead:    svg('<circle cx="12" cy="12" r="8" stroke="' + G + '" stroke-width="2"/>'),
+      tag:     svg('<path d="M4 4h7l9 9-7 7-9-9V4z" stroke="' + G + '" stroke-width="2" stroke-linejoin="round"/><circle cx="8" cy="8" r="1.4" fill="' + G + '"/>'),
+      file:    svg('<path d="M6 3h8l4 4v14H6V3z" stroke="' + G + '" stroke-width="2" stroke-linejoin="round"/>' + S('M14 3v4h4M9 13h6M9 17h6', G))
+    };
+
+    // asset-id (first 8 chars) → icon key
+    const MAP = {
+      // carets / chevrons
+      '3c7ae943':'caret','1349dd12':'caret','795dee5a':'caret','af7351af':'caret','f8d3e4db':'caret','4ff78abb':'caret',
+      '95558534':'check','ebac6e14':'hint','71867494':'clear','c5e27bce':'cancel','4f69e57c':'done',
+      '0c88d235':'del','3f69ee0f':'error',
+      // dropdown leading icons
+      '7c5eda40':'lead','316b7338':'lead','67e2f3cf':'lead','35501768':'lead','4ce54882':'lead','a52a8ffe':'lead',
+      // label component icons
+      'fdba764c':'tag','7fa03343':'tag','2e6e1fa6':'tag','8d8af6d8':'tag','f78d57e7':'tag','4efd8aeb':'tag',
+      // upload-box file icons
+      'e912224d':'file','2a7d1403':'file','5f512bd7':'file','b38c521b':'file','09b87382':'file','b7f254e7':'file','44b817a2':'file','13f9e5fe':'file'
+    };
+
+    document.querySelectorAll('img[src*="/api/mcp/asset/"]').forEach(img => {
+      const m = img.getAttribute('src').match(/asset\/([0-9a-f]{8})/);
+      let key = m && MAP[m[1]];
+      if (!key) key = (img.alt && ICON[img.alt]) ? img.alt : 'lead';
+      img.src = ICON[key] || ICON.lead;
+    });
+  })();
+
+  /* ── Header: Version history + visit (login) logging ── */
+  (function () {
+    const btn = document.getElementById('vh-btn');
+    const panel = document.getElementById('vh-panel');
+    if (!btn || !panel) return;
+
+    // Changelog — newest first. Add a new {date, note} line whenever the DS changes.
+    const CHANGELOG = [
+      { date: '2026-07-07', note: 'Moved Inline Message to Core Components; added header version history + visit log.' },
+      { date: '2026-07-07', note: 'Fixed broken Figma-hosted icons (inline SVG data URIs).' },
+      { date: '2026-07-07', note: 'Relocated prototype flow to standalone prototype-flow.html; added header link.' },
+      { date: '2026-07-02', note: 'Added Compare & Upgrade mobile prototype and Track Shifting Request.' },
+      { date: '2026-06-24', note: 'Added notification/monotone colour scales from Figma variables.' },
+      { date: '2025-01-01', note: 'Initial design system — foundations, core & complex components.' }
+    ];
+
+    // Auto-log each open (login) to localStorage
+    let opens = [];
+    try { opens = JSON.parse(localStorage.getItem('ds-open-log') || '[]'); } catch (e) { opens = []; }
+    opens.push(new Date().toISOString());
+    opens = opens.slice(-50);
+    try { localStorage.setItem('ds-open-log', JSON.stringify(opens)); } catch (e) {}
+
+    const fmtDate = (iso) => new Date(iso).toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
+    const fmtTime = (iso) => new Date(iso).toLocaleString(undefined, { month:'short', day:'numeric', hour:'2-digit', minute:'2-digit' });
+
+    function render() {
+      const changes = CHANGELOG.map(c =>
+        '<li style="display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--color-gray-5)">' +
+          '<span style="font-family:\'Outfit\',monospace;font-size:11px;font-weight:700;color:var(--color-ooredoo-red);white-space:nowrap;min-width:74px">' + fmtDate(c.date) + '</span>' +
+          '<span style="font-family:\'Noto Sans\',sans-serif;font-size:12px;color:var(--color-ooredoo-black);line-height:1.4">' + c.note + '</span>' +
+        '</li>').join('');
+      const recent = opens.slice().reverse().slice(0, 5).map((t, i) =>
+        '<li style="font-family:\'Noto Sans\',sans-serif;font-size:11px;color:var(--color-gray-1);padding:3px 0">' +
+          (i === 0 ? '<strong style="color:var(--color-ooredoo-black)">This visit</strong> · ' : '') + fmtTime(t) +
+        '</li>').join('');
+      panel.innerHTML =
+        '<div style="font-family:\'Rubik\',sans-serif;font-size:13px;font-weight:700;margin-bottom:6px">Version history</div>' +
+        '<ul style="list-style:none;margin:0 0 12px;padding:0">' + changes + '</ul>' +
+        '<div style="font-family:\'Rubik\',sans-serif;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--color-gray-2);margin-bottom:4px">Recent opens (' + opens.length + ' total)</div>' +
+        '<ul style="list-style:none;margin:0;padding:0">' + recent + '</ul>';
+    }
+    render();
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = panel.hasAttribute('hidden');
+      if (open) { panel.removeAttribute('hidden'); btn.setAttribute('aria-expanded', 'true'); }
+      else { panel.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false'); }
+    });
+    document.addEventListener('click', (e) => {
+      if (!panel.hasAttribute('hidden') && !panel.contains(e.target) && e.target !== btn) {
+        panel.setAttribute('hidden', ''); btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+
 </script>
 </body>
 </html>

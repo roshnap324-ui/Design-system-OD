@@ -1,0 +1,1428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Shift Your Home+ — Ooredoo Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=Noto+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+/* ── Design Tokens ── */
+:root {
+  --red:          #ED1C24;
+  --red-dark:     #C8151C;
+  --red-50:       #FDE8E9;
+  --red-300:      #F3686D;
+  --black:        #221E20;
+  --white:        #FFFFFF;
+  --blue:         #0047BB;
+  --blue-50:      #E5EFFF;
+  --blue-dark:    #002A6E;
+  --bg1:          #FDFDFD;
+  --bg2:          #EBF0F0;
+  --gray-1:       #AAAAAA;
+  --gray-2:       #898989;
+  --gray-3:       #6D6D6D;
+  --gray-4:       #E0E0E0;
+  --gray-5:       #F4F4F4;
+  --success:      #34B76D;
+  --info-bg:      #D8EEEA;
+  --info-text:    #37534E;
+  --stroke:       #AAAAAA;
+  --stroke-focus: #707070;
+  --border:       #E9E9EB;
+  --shadow-sm:    0 1px 3px rgba(0,0,0,.08);
+  --shadow-md:    0 2px 8px rgba(0,0,0,.12);
+  --shadow-top:   0 0 12px rgba(0,0,0,.30);
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --radius-lg:    12px;
+  --radius-xl:    16px;
+  --radius-pill:  100px;
+}
+
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:'Noto Sans',sans-serif;
+  background:#1A1A2E;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:40px 20px;
+}
+
+/* ── Phone Shell ── */
+.phone-shell{
+  width:375px;
+  height:812px;
+  background:var(--bg2);
+  border-radius:40px;
+  overflow:hidden;
+  position:relative;
+  box-shadow:0 30px 80px rgba(0,0,0,.6), inset 0 0 0 1.5px rgba(255,255,255,.1);
+  flex-shrink:0;
+}
+
+/* ── Screen routing ── */
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  overflow-y:auto;
+  overflow-x:hidden;
+  background:var(--bg2);
+  transform:translateX(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  will-change:transform;
+  scrollbar-width:none;
+}
+.screen::-webkit-scrollbar{display:none}
+.screen.active{transform:translateX(0)}
+.screen.slide-out{transform:translateX(-100%)}
+
+/* ── Status Bar ── */
+.status-bar{
+  width:100%;height:44px;background:transparent;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 20px 0;
+  position:relative;z-index:10;
+  flex-shrink:0;
+}
+.status-bar .time{font-family:'Rubik',sans-serif;font-size:15px;font-weight:600;color:var(--black)}
+.status-bar .icons{display:flex;align-items:center;gap:6px}
+.status-bar .icons svg{color:var(--black)}
+
+/* ── Navigation Bar ── */
+.nav-bar{
+  width:100%;height:52px;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 16px;
+  position:relative;flex-shrink:0;
+  background:transparent;
+}
+.nav-bar .nav-back{
+  position:absolute;left:8px;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  background:none;border:none;cursor:pointer;
+  border-radius:50%;
+}
+.nav-bar .nav-back:hover{background:rgba(0,0,0,.06)}
+.nav-bar .nav-title{
+  font-family:'Rubik',sans-serif;
+  font-size:18px;font-weight:600;
+  color:var(--black);
+  letter-spacing:0;
+}
+
+/* ── White content card ── */
+.content-card{
+  flex:1;
+  background:var(--bg1);
+  border-radius:16px 16px 0 0;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  min-height:0;
+}
+.content-scroll{
+  flex:1;overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:none;
+  padding-bottom:120px;
+}
+.content-scroll::-webkit-scrollbar{display:none}
+
+/* ── Page Heading ── */
+.page-heading{padding:40px 24px 12px;flex-shrink:0}
+.page-heading h1{
+  font-family:'Rubik',sans-serif;
+  font-size:28px;font-weight:600;line-height:37px;
+  color:var(--black);white-space:pre-wrap;
+}
+.page-heading p{
+  font-family:'Noto Sans',sans-serif;
+  font-size:16px;font-weight:400;line-height:24px;
+  color:var(--black);margin-top:12px;
+}
+
+/* ── Bottom Button Bar ── */
+.btn-bar{
+  position:absolute;bottom:0;left:0;right:0;
+  background:var(--bg1);
+  padding:16px 24px 40px;
+  box-shadow:var(--shadow-top);
+  z-index:20;
+}
+.btn-primary{
+  width:100%;height:48px;
+  background:var(--red);color:var(--white);
+  border:none;border-radius:var(--radius-pill);
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:600;
+  letter-spacing:0.48px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  gap:12px;transition:background .18s;
+}
+.btn-primary:hover{background:var(--red-dark)}
+.btn-primary:disabled{background:var(--gray-5);color:var(--gray-3);cursor:not-allowed}
+.btn-secondary{
+  width:100%;height:48px;
+  background:transparent;color:var(--red);
+  border:2px solid var(--red);border-radius:var(--radius-pill);
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:600;
+  letter-spacing:0.48px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .18s;margin-top:12px;
+}
+.btn-secondary:hover{background:var(--red-50)}
+
+/* ── Step Progress ── */
+.step-progress{
+  display:flex;align-items:center;gap:6px;
+  padding:8px 24px 0;
+  flex-shrink:0;
+}
+.step-dot{
+  flex:1;height:4px;background:var(--gray-4);
+  border-radius:var(--radius-pill);
+  transition:background .3s;
+}
+.step-dot.done{background:var(--red)}
+.step-dot.active{background:var(--red);opacity:.5}
+
+/* ── Plan Card ── */
+.plan-card{
+  margin:16px 24px;
+  border:1px solid var(--border);
+  border-radius:var(--radius-lg);
+  background:var(--bg1);
+  padding:12px 16px;
+}
+.plan-card-row{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.plan-card-left{display:flex;align-items:flex-start;gap:8px;flex:1}
+.plan-icon{
+  width:24px;height:24px;
+  background:var(--red-50);border-radius:var(--radius-md);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;
+}
+.plan-label{font-family:'Noto Sans',sans-serif;font-size:14px;color:var(--gray-2);line-height:20px}
+.plan-name{font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:700;color:var(--black);line-height:20px}
+.plan-number{font-family:'Outfit',sans-serif;font-size:12px;color:var(--black);text-transform:uppercase}
+.plan-price-col{display:flex;flex-direction:column;align-items:flex-end;gap:2px;flex-shrink:0}
+.plan-price{display:flex;align-items:baseline;gap:1px}
+.plan-price .currency{font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)}
+.plan-price .amount{font-family:'Outfit',sans-serif;font-size:18px;font-weight:700;color:var(--black)}
+.plan-price .cents{font-family:'Outfit',sans-serif;font-size:12px;color:var(--gray-2)}
+.plan-per{font-family:'Noto Sans',sans-serif;font-size:14px;color:var(--gray-2);text-align:right}
+
+/* ── Benefits Box ── */
+.benefits-box{
+  margin:0 24px 16px;
+  background:var(--gray-5);border-radius:var(--radius-lg);
+  padding:16px;
+}
+.benefits-title{
+  font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;
+  color:var(--gray-3);line-height:19px;
+  letter-spacing:-0.1px;margin-bottom:12px;
+}
+.benefit-item{
+  display:flex;align-items:flex-start;gap:8px;
+  padding:4px 0 4px 24px;position:relative;
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+  color:var(--black);line-height:1.4;
+}
+.benefit-item svg{
+  position:absolute;left:0;top:6px;
+  width:16px;height:16px;flex-shrink:0;
+}
+
+/* ── Tabs ── */
+.tabs{
+  display:flex;align-items:center;gap:12px;
+  padding:24px 24px 0;
+}
+.tab-btn{
+  padding:12px 16px;border-radius:var(--radius-lg);
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:400;
+  cursor:pointer;border:none;background:none;
+  color:var(--red);line-height:24px;
+  transition:background .18s,color .18s;
+}
+.tab-btn.active{
+  background:var(--blue-50);
+  color:var(--blue);font-weight:500;
+}
+
+/* ── Form Fields ── */
+.form-section{padding:0 24px;display:flex;flex-direction:column;gap:20px;margin-top:24px}
+.form-row{display:flex;gap:16px}
+.form-row .form-field{flex:1}
+.form-field{display:flex;flex-direction:column;gap:8px}
+.form-field label{
+  font-family:'Noto Sans',sans-serif;font-size:14px;font-weight:600;
+  color:var(--gray-1);letter-spacing:0.7px;line-height:16px;
+}
+.form-field input{
+  font-family:'Noto Sans',sans-serif;font-size:15px;font-weight:500;
+  color:var(--black);
+  background:var(--white);
+  border:1px solid var(--stroke-focus);
+  border-radius:var(--radius-md);
+  padding:14px 12px;
+  outline:none;
+  transition:border-color .15s;
+  letter-spacing:0.6px;
+  line-height:16px;
+}
+.form-field input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,71,187,.12)}
+
+/* ── Calendar ── */
+.calendar-section{padding:0 24px;margin-top:24px}
+.calendar-title{
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;
+  color:var(--black);line-height:24px;margin-bottom:16px;
+}
+.calendar-card{
+  background:var(--white);
+  border-radius:var(--radius-lg);
+  box-shadow:0 2px 5px rgba(0,0,0,.15);
+  padding-bottom:8px;
+  overflow:hidden;
+}
+.cal-header{
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;padding:16px 24px 8px;
+}
+.cal-header button{
+  background:none;border:none;cursor:pointer;
+  width:24px;height:24px;display:flex;align-items:center;justify-content:center;
+  border-radius:50%;
+}
+.cal-header button:hover{background:var(--gray-5)}
+.cal-month{
+  flex:1;text-align:center;
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:600;
+  color:var(--black);
+}
+.cal-days-header{
+  display:grid;grid-template-columns:repeat(7,1fr);
+  padding:8px 24px;
+  border-bottom:1px solid var(--border);
+}
+.cal-day-name{
+  text-align:center;
+  font-family:'Rubik',sans-serif;font-size:12px;color:var(--black);
+  padding:2px 8px;
+}
+.cal-grid{display:flex;flex-direction:column;gap:4px;padding:4px 24px 0}
+.cal-week{display:grid;grid-template-columns:repeat(7,1fr)}
+.cal-date{
+  height:42px;display:flex;align-items:center;justify-content:center;
+  font-family:'Rubik',sans-serif;font-size:12px;
+  color:var(--black);border-radius:30px;
+  cursor:pointer;position:relative;transition:background .15s;
+}
+.cal-date:hover:not(.disabled):not(.selected){background:var(--gray-5)}
+.cal-date.disabled{opacity:.3;cursor:default}
+.cal-date.selected{
+  background:var(--blue);color:var(--white);border-radius:30px;
+}
+.cal-date.today-bg{background:var(--white)}
+.cal-date.dimmed{color:var(--gray-3)}
+
+/* ── Time Slots ── */
+.timeslot-section{padding:0 24px;margin-top:24px}
+.timeslot-title{
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;
+  color:var(--black);line-height:24px;margin-bottom:16px;
+}
+.timeslot-grid{display:flex;flex-direction:column;gap:8px}
+.timeslot-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.timeslot{
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-md);
+  padding:12px 14px;
+  cursor:pointer;
+  background:var(--white);
+  transition:border-color .18s,background .18s;
+}
+.timeslot:hover{border-color:var(--blue)}
+.timeslot.selected{border-color:var(--blue);background:var(--blue-50)}
+.timeslot-time{
+  font-family:'Rubik',sans-serif;font-size:13px;font-weight:600;
+  color:var(--black);line-height:16px;
+}
+.timeslot-ampm{
+  font-family:'Noto Sans',sans-serif;font-size:12px;
+  color:var(--gray-2);margin-top:2px;line-height:16px;
+}
+.timeslot.selected .timeslot-time,.timeslot.selected .timeslot-ampm{color:var(--blue)}
+
+/* ── Extra Plan Banner ── */
+.extra-plan-banner{
+  margin:0 24px;
+  border:1.5px dashed var(--red-300);
+  border-radius:var(--radius-lg);
+  background:var(--white);
+  padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.extra-plan-text{flex:1}
+.extra-plan-text h4{
+  font-family:'Rubik',sans-serif;font-size:14px;font-weight:500;
+  color:var(--black);line-height:19px;
+}
+.extra-plan-text p{
+  font-family:'Rubik',sans-serif;font-size:13px;
+  color:var(--gray-3);line-height:16px;margin-top:4px;
+}
+.extra-plan-btn{
+  width:24px;height:24px;
+  background:var(--red);border:none;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;flex-shrink:0;color:var(--white);
+  font-size:20px;line-height:1;
+}
+
+/* ── Disconnect / Confirm Review Sections ── */
+.review-section{background:var(--bg2);padding:24px}
+.review-section-title{
+  font-family:'Rubik',sans-serif;font-size:14px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1px;
+  color:var(--gray-2);margin-bottom:16px;
+}
+.review-card{
+  background:var(--bg1);border-radius:var(--radius-lg);
+  padding:24px;
+}
+.review-row{
+  display:flex;align-items:flex-start;justify-content:space-between;
+  padding:8px 0;
+}
+.review-row:not(:last-child){border-bottom:1px solid var(--gray-5)}
+.review-label{font-family:'Noto Sans',sans-serif;font-size:14px;color:var(--black);line-height:20px}
+.review-sublabel{font-family:'Noto Sans',sans-serif;font-size:12px;color:var(--gray-3);line-height:16px;margin-top:2px}
+.review-value{
+  font-family:'Outfit',sans-serif;font-size:18px;
+  color:var(--black);text-align:right;line-height:normal;
+}
+.review-value-sm{
+  font-family:'Rubik',sans-serif;font-size:14px;
+  color:var(--black);text-align:right;line-height:20px;
+}
+
+/* ── Plan Summary Card (confirm screen) ── */
+.plan-summary-card{
+  margin:0 24px 0;
+  border:1px solid var(--gray-1);
+  border-radius:var(--radius-lg);
+  overflow:hidden;
+}
+.plan-summary-header{
+  padding:12px 16px;
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;
+  color:var(--black);line-height:24px;
+  background:var(--bg1);
+}
+.plan-summary-body{
+  background:var(--gray-5);
+  padding:16px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.plan-summary-row{
+  display:flex;align-items:center;justify-content:space-between;
+}
+.plan-summary-label{
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+  color:var(--black);line-height:20px;
+}
+.plan-summary-value{
+  font-family:'Rubik',sans-serif;font-size:14px;
+  color:var(--black);text-align:right;
+}
+
+/* ── T&C Banner ── */
+.tnc-banner{
+  background:var(--info-bg);
+  border-radius:var(--radius-sm);
+  padding:8px;display:flex;align-items:flex-start;gap:8px;
+  margin-bottom:12px;
+}
+.tnc-banner p{
+  font-family:'Rubik',sans-serif;font-size:14px;
+  color:var(--info-text);line-height:20px;
+  flex:1;
+}
+.tnc-banner a{text-decoration:underline;color:var(--info-text)}
+
+/* ── Services List ── */
+.services-bg{flex:1;background:var(--bg1);border-radius:16px 16px 0 0}
+.service-item{
+  display:flex;align-items:center;gap:8px;
+  padding:16px 24px;
+  cursor:pointer;
+  transition:background .15s;
+  position:relative;
+}
+.service-item:hover{background:var(--gray-5)}
+.service-icon-wrap{
+  width:36px;height:36px;
+  background:var(--red-50);border-radius:var(--radius-md);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.service-details{flex:1;min-width:0}
+.service-title{
+  font-family:'Rubik',sans-serif;font-size:16px;font-weight:600;
+  color:var(--black);line-height:1.2;
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+}
+.badge-new{
+  background:#184CBC;color:var(--white);
+  font-family:'Rubik',sans-serif;font-size:12px;font-weight:500;
+  padding:2px 8px;border-radius:var(--radius-md);
+  line-height:15px;
+}
+.service-desc{
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+  color:var(--gray-3);line-height:1.5;margin-top:4px;
+}
+.service-arrow{width:20px;height:20px;color:var(--red);flex-shrink:0}
+.service-divider{height:1px;background:var(--border);margin-left:68px;margin-right:24px}
+
+/* ── Success Screen ── */
+.success-screen{
+  flex:1;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:40px 24px;
+  text-align:center;
+  background:var(--bg1);
+  border-radius:16px 16px 0 0;
+}
+.success-icon{
+  width:80px;height:80px;
+  background:var(--red-50);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 24px;
+}
+.success-title{
+  font-family:'Rubik',sans-serif;font-size:28px;font-weight:600;
+  color:var(--black);line-height:37px;margin-bottom:12px;
+}
+.success-subtitle{
+  font-family:'Noto Sans',sans-serif;font-size:16px;
+  color:var(--gray-3);line-height:24px;max-width:280px;margin:0 auto 32px;
+}
+.success-detail-card{
+  width:100%;background:var(--bg2);
+  border-radius:var(--radius-lg);padding:20px;
+  text-align:left;margin-bottom:24px;
+}
+.success-ref{
+  font-family:'Noto Sans',sans-serif;font-size:12px;
+  color:var(--gray-2);margin-bottom:4px;
+}
+.success-ref-val{
+  font-family:'Outfit',sans-serif;font-size:20px;
+  color:var(--black);font-weight:600;
+}
+.success-dates{
+  margin-top:16px;display:flex;flex-direction:column;gap:8px;
+}
+.success-date-row{
+  display:flex;align-items:center;justify-content:space-between;
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+}
+.success-date-label{color:var(--gray-2)}
+.success-date-val{color:var(--black);font-weight:600}
+
+/* ── Disconnect screen ── */
+.disconnect-banner{
+  margin:0 24px;
+  background:var(--gray-5);
+  border-radius:var(--radius-lg);
+  padding:16px;
+  display:flex;flex-direction:column;gap:12px;
+}
+.disconnect-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:4px 0;
+}
+.disconnect-label{
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+  color:var(--gray-2);line-height:20px;
+}
+.disconnect-value{
+  font-family:'Noto Sans',sans-serif;font-size:14px;
+  font-weight:600;color:var(--black);text-align:right;
+}
+.info-note{
+  margin:16px 24px 0;
+  background:var(--info-bg);
+  border-radius:var(--radius-sm);
+  padding:8px 12px;
+  display:flex;gap:8px;align-items:flex-start;
+}
+.info-note p{
+  font-family:'Noto Sans',sans-serif;font-size:13px;
+  color:var(--info-text);line-height:1.5;flex:1;
+}
+
+/* ── Page top bg ── */
+.top-bg{
+  background:var(--bg2);
+  flex-shrink:0;padding-bottom:4px;
+}
+</style>
+</head>
+<body>
+
+<div class="phone-shell" id="phone">
+
+  <!-- ════════════════════════════════════════
+       SCREEN 0: SERVICES LIST
+  ════════════════════════════════════════ -->
+  <div class="screen active" id="s-services">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <span class="nav-title">Services</span>
+      </div>
+    </div>
+    <div style="flex:1;background:var(--bg1);border-radius:16px 16px 0 0;overflow-y:auto;scrollbar-width:none;">
+      <div style="height:8px"></div>
+
+      <!-- Shift Your Home+ item -->
+      <div class="service-item" onclick="navigate('s-step1')">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">
+            Shift Your Home+
+            <span class="badge-new">New</span>
+          </div>
+          <div class="service-desc">Move your Internet to your new home with no interruption</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">Recharge and Transfer</div>
+          <div class="service-desc">Instantly recharge any of your numbers or transfer to friends and family anywhere</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">Pay Bill</div>
+          <div class="service-desc">Skip queues by paying your bill here</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">Nojoom</div>
+          <div class="service-desc">Redeem your Nojoom points to pay your Ooredoo bills and much more</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="12" y2="15"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">Buy Devices</div>
+          <div class="service-desc">Find your perfect device!</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">Entertainment</div>
+          <div class="service-desc">Your one-stop for entertainment</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+
+      <div class="service-divider"></div>
+      <div class="service-item">
+        <div class="service-icon-wrap">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="1.8" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="service-details">
+          <div class="service-title">SIM Management</div>
+          <div class="service-desc">Convert your physical SIM cards to eSIMs and manage them</div>
+        </div>
+        <svg class="service-arrow" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M7.5 5l5 5-5 5"/></svg>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 1: TAKE YOUR INTERNET WITH YOU
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-step1">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <button class="nav-back" onclick="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="nav-title">Shift your Home+</span>
+      </div>
+      <div class="step-progress">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-scroll">
+        <!-- Heading -->
+        <div class="page-heading">
+          <h1>Take your<br>internet with you 🌐</h1>
+          <p>Moving home? We'll shift your Home+ without changing your number or interrupting your service.</p>
+        </div>
+
+        <!-- Current Plan Card -->
+        <div class="plan-card">
+          <div class="plan-card-row">
+            <div class="plan-card-left">
+              <div>
+                <div class="plan-label">Current plan</div>
+                <div style="display:flex;align-items:center;gap:8px;margin-top:4px">
+                  <div class="plan-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ED1C24" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  </div>
+                  <div>
+                    <div class="plan-name">Home+ Go</div>
+                    <div class="plan-number">66000723</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="plan-price-col">
+              <div class="plan-price">
+                <span class="currency">QR</span>
+                <span class="amount">365</span>
+                <span class="cents">.00</span>
+              </div>
+              <div class="plan-per">/month</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Benefits Box -->
+        <div class="benefits-box">
+          <div class="benefits-title">Key relocation benefits</div>
+          <div class="benefit-item">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#34B76D" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="#34B76D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Zero service interruption
+          </div>
+          <div class="benefit-item">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#34B76D" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="#34B76D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            No termination or activation required from your end
+          </div>
+          <div class="benefit-item">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#34B76D" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="#34B76D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Fully digital execution
+          </div>
+          <div class="benefit-item">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#34B76D" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="#34B76D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Shifting will be free of charge once a year
+          </div>
+          <div class="benefit-item">
+            <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="7" stroke="#34B76D" stroke-width="1.5"/><path d="M5 8.5l2 2 4-4" stroke="#34B76D" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Add more Home plan for your location
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="btn-bar">
+        <button class="btn-primary" onclick="navigate('s-step2')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 2: INSTALLATION PREFERENCE (ADDRESS)
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-step2">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <button class="nav-back" onclick="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="nav-title">Shift your Home+</span>
+      </div>
+      <div class="step-progress">
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-scroll">
+        <div class="page-heading">
+          <h1>Installation<br>preference 🏠</h1>
+          <p>Add your new home address to schedule your Wi-Fi installation</p>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+          <button class="tab-btn active">Enter Manually</button>
+          <button class="tab-btn">Select from Map</button>
+        </div>
+
+        <!-- Address Form -->
+        <div class="form-section">
+          <div class="form-row">
+            <div class="form-field">
+              <label>STREET NO.</label>
+              <input type="text" value="132" placeholder="Street No.">
+            </div>
+            <div class="form-field">
+              <label>BUILDING NO.</label>
+              <input type="text" value="89" placeholder="Building No.">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>ZONE</label>
+              <input type="text" value="70" placeholder="Zone">
+            </div>
+            <div class="form-field">
+              <label>AREA</label>
+              <input type="text" value="Simaisma" placeholder="Area">
+            </div>
+          </div>
+          <div class="form-field">
+            <label>ELECTRICITY NUMBER</label>
+            <input type="text" value="1141351" placeholder="Electricity Number">
+          </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="calendar-section" style="margin-top:28px">
+          <div class="calendar-title">Choose Installation Date</div>
+          <div class="calendar-card">
+            <div class="cal-header">
+              <button onclick="prevMonth()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="cal-month" id="cal-month-label">Aug 2026</div>
+              <button onclick="nextMonth()">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="cal-days-header">
+              <div class="cal-day-name">Sun</div>
+              <div class="cal-day-name">Mon</div>
+              <div class="cal-day-name">Tue</div>
+              <div class="cal-day-name">Wed</div>
+              <div class="cal-day-name">Thu</div>
+              <div class="cal-day-name">Fri</div>
+              <div class="cal-day-name">Sat</div>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+          </div>
+        </div>
+
+        <!-- Extra Home+ Plan Banner -->
+        <div style="margin:24px 24px 0">
+          <div style="font-family:'Rubik',sans-serif;font-size:16px;font-weight:500;color:var(--black);margin-bottom:8px">Need an extra Home+ service?</div>
+          <div class="extra-plan-banner">
+            <div class="extra-plan-text">
+              <h4>Request additional plan</h4>
+              <p>You can request one more plan at your new location.</p>
+            </div>
+            <button class="extra-plan-btn">+</button>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+      </div>
+
+      <div class="btn-bar">
+        <button class="btn-primary" onclick="navigate('s-step3')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 3: CHOOSE INSTALLATION TIME
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-step3">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <button class="nav-back" onclick="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="nav-title">Shift your Home+</span>
+      </div>
+      <div class="step-progress">
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-scroll">
+        <div class="page-heading">
+          <h1>Disconnect<br>old service 🔌</h1>
+          <p>Choose when you'd like your current internet at the old address to be disconnected.</p>
+        </div>
+
+        <!-- Summary of old address -->
+        <div class="disconnect-banner" style="margin:0 24px">
+          <div class="disconnect-row">
+            <span class="disconnect-label">Current address</span>
+            <span class="disconnect-value">Building 89, Zone 42</span>
+          </div>
+          <div class="disconnect-row">
+            <span class="disconnect-label">Current plan</span>
+            <span class="disconnect-value">Home+ Go</span>
+          </div>
+          <div class="disconnect-row">
+            <span class="disconnect-label">Monthly fee</span>
+            <span class="disconnect-value" style="color:var(--red)">QR 365.00</span>
+          </div>
+        </div>
+
+        <div class="info-note">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="7" fill="#D8EEEA"/><path d="M8 7v4" stroke="#37534E" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="#37534E"/></svg>
+          <p>Your old connection will remain active until the new one is successfully installed at your new address.</p>
+        </div>
+
+        <!-- Time slots heading -->
+        <div class="timeslot-section" style="margin-top:24px">
+          <div class="timeslot-title">Choose a disconnection time slot</div>
+          <div class="timeslot-grid">
+            <div class="timeslot-row">
+              <div class="timeslot selected" onclick="selectSlot(this)">
+                <div class="timeslot-time">8:00 – 12:00</div>
+                <div class="timeslot-ampm">Morning</div>
+              </div>
+              <div class="timeslot" onclick="selectSlot(this)">
+                <div class="timeslot-time">12:00 – 16:00</div>
+                <div class="timeslot-ampm">Afternoon</div>
+              </div>
+            </div>
+            <div class="timeslot-row">
+              <div class="timeslot" onclick="selectSlot(this)">
+                <div class="timeslot-time">16:00 – 20:00</div>
+                <div class="timeslot-ampm">Evening</div>
+              </div>
+              <div class="timeslot disabled">
+                <div class="timeslot-time">20:00 – 22:00</div>
+                <div class="timeslot-ampm">Not available</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+      </div>
+
+      <div class="btn-bar">
+        <button class="btn-primary" onclick="navigate('s-step4')">Continue</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 4: CONFIRM YOUR ORDER
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-step4">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <button class="nav-back" onclick="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="nav-title">Shift your Home+</span>
+      </div>
+      <div class="step-progress">
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-scroll">
+        <div class="page-heading">
+          <h1>Confirm<br>your Order</h1>
+          <p>Review your details before we submit your shift request.</p>
+        </div>
+
+        <!-- Plan Summary -->
+        <div style="padding:0 24px">
+          <div class="plan-summary-card">
+            <div class="plan-summary-header">Temporary Home+</div>
+            <div class="plan-summary-body">
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Internet speed<br><span style="font-size:12px;color:var(--gray-2)">1Gbps</span></span>
+                <span class="plan-summary-value">Unlimited</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Your TV</span>
+                <span class="plan-summary-value">Single room</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Smart Wi-Fi</span>
+                <span class="plan-summary-value">1 device</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">TV &amp; Entertainment Credits</span>
+                <span class="plan-summary-value">40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Address Section -->
+        <div class="review-section" style="margin-top:16px">
+          <div class="review-section-title">New Address</div>
+          <div class="review-card">
+            <div class="review-row">
+              <div>
+                <div class="review-label" style="font-size:12px;color:var(--gray-2)">Full Name</div>
+                <div class="review-value">Ahmed Badra</div>
+              </div>
+            </div>
+            <div class="review-row">
+              <div>
+                <div class="review-label" style="font-size:12px;color:var(--gray-2)">Contact Number</div>
+                <div class="review-value">+974 33312345</div>
+              </div>
+            </div>
+            <div class="review-row" style="border-bottom:none">
+              <div>
+                <div class="review-label" style="font-size:12px;color:var(--gray-2)">Address</div>
+                <div class="review-value">Zigzag Roundabout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Preference Section -->
+        <div class="review-section" style="margin-top:0;padding-top:0">
+          <div class="review-section-title" style="padding-top:16px">Date Preference</div>
+          <div class="review-card">
+            <div class="review-row">
+              <div>
+                <div class="review-label" style="font-size:12px;color:var(--gray-2)">Old internet stops</div>
+                <div class="review-value">on 11 Aug 2026</div>
+              </div>
+            </div>
+            <div class="review-row" style="border-bottom:none">
+              <div>
+                <div class="review-label" style="font-size:12px;color:var(--gray-2)">New internet installs</div>
+                <div class="review-value">on 24 Aug 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+      </div>
+
+      <div class="btn-bar">
+        <div class="tnc-banner">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="7" fill="#D8EEEA"/><path d="M8 7v4" stroke="#37534E" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="#37534E"/></svg>
+          <p>By proceeding, you confirm that you have read and agree to our <a href="#">Terms &amp; Conditions</a></p>
+        </div>
+        <button class="btn-primary" onclick="navigate('s-step5')">Confirm</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 5: CONFIRM DETAILS
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-step5">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+      <div class="nav-bar">
+        <button class="nav-back" onclick="goBack()">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#221E20" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <span class="nav-title">Shift your Home+</span>
+      </div>
+      <div class="step-progress">
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot done"></div>
+        <div class="step-dot active"></div>
+      </div>
+    </div>
+
+    <div class="content-card">
+      <div class="content-scroll">
+        <div class="page-heading">
+          <h1>Confirm details</h1>
+          <p>Please review your selections below.</p>
+        </div>
+
+        <!-- Plan Summary -->
+        <div style="padding:0 24px">
+          <div class="plan-summary-card">
+            <div class="plan-summary-header">Temporary Home+</div>
+            <div class="plan-summary-body">
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Internet speed<br><span style="font-size:12px;color:var(--gray-2)">1Gbps</span></span>
+                <span class="plan-summary-value">Unlimited</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Your TV</span>
+                <span class="plan-summary-value">Single room</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">Smart Wi-Fi</span>
+                <span class="plan-summary-value" style="font-family:'Outfit',sans-serif;text-transform:uppercase">1 devices</span>
+              </div>
+              <div class="plan-summary-row">
+                <span class="plan-summary-label">TV &amp; Entertainment Credits</span>
+                <span class="plan-summary-value" style="font-family:'Outfit',sans-serif;text-transform:uppercase">40</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Address -->
+        <div class="review-section" style="margin-top:16px">
+          <div class="review-section-title">New Address</div>
+          <div class="review-card">
+            <div class="review-row">
+              <div>
+                <div style="font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)">Full Name</div>
+                <div class="review-value">Ahmed Badra</div>
+              </div>
+            </div>
+            <div class="review-row">
+              <div>
+                <div style="font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)">Contact Number</div>
+                <div class="review-value">+974 33312345</div>
+              </div>
+            </div>
+            <div class="review-row" style="border-bottom:none">
+              <div>
+                <div style="font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)">Address</div>
+                <div class="review-value">Zigzag Roundabout</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Date Preference -->
+        <div class="review-section" style="padding-top:0;margin-top:0">
+          <div class="review-section-title" style="padding-top:16px">Date Preference</div>
+          <div class="review-card">
+            <div class="review-row">
+              <div>
+                <div style="font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)">Old internet stops</div>
+                <div class="review-value">on 11 Aug 2026</div>
+              </div>
+            </div>
+            <div class="review-row" style="border-bottom:none">
+              <div>
+                <div style="font-family:'Rubik',sans-serif;font-size:12px;color:var(--gray-2)">New internet installs</div>
+                <div class="review-value">on 24 Aug 2026</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="height:16px"></div>
+      </div>
+
+      <div class="btn-bar">
+        <div class="tnc-banner">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style="flex-shrink:0;margin-top:2px"><circle cx="8" cy="8" r="7" fill="#D8EEEA"/><path d="M8 7v4" stroke="#37534E" stroke-width="1.5" stroke-linecap="round"/><circle cx="8" cy="5" r="0.75" fill="#37534E"/></svg>
+          <p>By proceeding, you confirm that you have read and agree to our <a href="#">Terms &amp; Conditions</a></p>
+        </div>
+        <button class="btn-primary" onclick="navigate('s-success')">Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ════════════════════════════════════════
+       SCREEN 6: SUCCESS
+  ════════════════════════════════════════ -->
+  <div class="screen" id="s-success">
+    <div class="top-bg">
+      <div class="status-bar">
+        <span class="time">9:41</span>
+        <div class="icons">
+          <svg width="17" height="12" viewBox="0 0 17 12" fill="currentColor"><rect x="0" y="3" width="3" height="9" rx="1"/><rect x="4.5" y="2" width="3" height="10" rx="1"/><rect x="9" y="1" width="3" height="11" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+          <svg width="16" height="12" viewBox="0 0 24 17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 5.5C4.2 2.3 8.4 0.5 12 0.5c3.6 0 7.8 1.8 11 5"/><path d="M4 9c2.2-2.1 5-3.5 8-3.5s5.8 1.4 8 3.5"/><path d="M7.5 12.5c1.3-1.3 3-2 4.5-2s3.2.7 4.5 2"/><circle cx="12" cy="16" r="1.5" fill="currentColor"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="currentColor"><rect x="0" y="1" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="1.5" y="2.5" width="17" height="7" rx="1"/><rect x="22.5" y="4" width="2" height="4" rx="1"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-card" style="border-radius:16px 16px 0 0">
+      <div class="success-screen">
+        <!-- Check Circle -->
+        <div class="success-icon">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+            <circle cx="24" cy="24" r="24" fill="#ED1C24" opacity="0.1"/>
+            <circle cx="24" cy="24" r="18" fill="#ED1C24"/>
+            <path d="M16 24l6 6 10-12" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <div class="success-title">Shift Home+<br>Request Submitted!</div>
+        <div class="success-subtitle">Your relocation request has been received. We'll notify you when the shift is confirmed.</div>
+
+        <!-- Reference card -->
+        <div class="success-detail-card">
+          <div class="success-ref">Reference Number</div>
+          <div class="success-ref-val">SHF-2026-08241</div>
+          <div class="success-dates">
+            <div class="success-date-row">
+              <span class="success-date-label">Old internet stops</span>
+              <span class="success-date-val">11 Aug 2026</span>
+            </div>
+            <div class="success-date-row">
+              <span class="success-date-label">New install date</span>
+              <span class="success-date-val">24 Aug 2026</span>
+            </div>
+            <div class="success-date-row">
+              <span class="success-date-label">New address</span>
+              <span class="success-date-val">Zigzag Roundabout</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <button class="btn-primary" style="max-width:327px" onclick="resetToServices()">Back to Services</button>
+        <button class="btn-secondary" style="max-width:327px" onclick="resetToServices()">Track My Request</button>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /phone-shell -->
+
+<script>
+/* ── Navigation Stack ── */
+const stack = ['s-services'];
+
+function navigate(targetId) {
+  const current = document.querySelector('.screen.active');
+  const target  = document.getElementById(targetId);
+  if (!target || target === current) return;
+
+  current.classList.add('slide-out');
+  current.classList.remove('active');
+  target.classList.add('active');
+  stack.push(targetId);
+
+  // Reset scroll
+  const scroll = target.querySelector('.content-scroll');
+  if (scroll) scroll.scrollTop = 0;
+}
+
+function goBack() {
+  if (stack.length <= 1) return;
+  const current = document.querySelector('.screen.active');
+  stack.pop();
+  const prevId = stack[stack.length - 1];
+  const prev   = document.getElementById(prevId);
+
+  current.classList.remove('active');
+  current.style.transition = 'none';
+  current.style.transform  = 'translateX(100%)';
+  requestAnimationFrame(() => {
+    current.style.transition = '';
+    current.classList.remove('slide-out');
+  });
+
+  prev.classList.remove('slide-out');
+  prev.classList.add('active');
+}
+
+function resetToServices() {
+  document.querySelectorAll('.screen').forEach(s => {
+    s.classList.remove('active','slide-out');
+    s.style.transition = 'none';
+    s.style.transform  = '';
+    requestAnimationFrame(() => { s.style.transition = ''; });
+  });
+  stack.length = 0;
+  stack.push('s-services');
+  document.getElementById('s-services').classList.add('active');
+}
+
+/* ── Time Slot Selection ── */
+function selectSlot(el) {
+  if (el.classList.contains('disabled')) return;
+  document.querySelectorAll('#s-step3 .timeslot').forEach(s => s.classList.remove('selected'));
+  el.classList.add('selected');
+}
+
+/* ── Calendar ── */
+let calYear = 2026, calMonth = 7, selectedDay = 24; // Aug = 7 (0-indexed)
+
+const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+function renderCalendar() {
+  const label = document.getElementById('cal-month-label');
+  const grid  = document.getElementById('cal-grid');
+  if (!label || !grid) return;
+
+  label.textContent = `${monthNames[calMonth]} ${calYear}`;
+
+  const firstDay = new Date(calYear, calMonth, 1).getDay();
+  const daysInMonth = new Date(calYear, calMonth + 1, 0).getDate();
+
+  const today = new Date();
+  const pastCutoff = new Date(calYear, calMonth, 5); // first 4 days disabled
+
+  let html = '';
+  let day = 1 - firstDay;
+
+  for (let week = 0; week < 6; week++) {
+    let rowHtml = '<div class="cal-week">';
+    let hasContent = false;
+    for (let d = 0; d < 7; d++, day++) {
+      if (day < 1 || day > daysInMonth) {
+        rowHtml += '<div class="cal-date"></div>';
+      } else {
+        hasContent = true;
+        const isPast = day <= 4;
+        const isSelected = day === selectedDay;
+        let cls = 'cal-date';
+        if (isPast) cls += ' disabled';
+        if (isSelected) cls += ' selected';
+        rowHtml += `<div class="${cls}" onclick="selectDay(${day})">${day}</div>`;
+      }
+    }
+    rowHtml += '</div>';
+    if (hasContent || week === 0) html += rowHtml;
+    if (day > daysInMonth) break;
+  }
+
+  grid.innerHTML = html;
+}
+
+function selectDay(d) {
+  selectedDay = d;
+  renderCalendar();
+}
+
+function prevMonth() {
+  calMonth--;
+  if (calMonth < 0) { calMonth = 11; calYear--; }
+  renderCalendar();
+}
+function nextMonth() {
+  calMonth++;
+  if (calMonth > 11) { calMonth = 0; calYear++; }
+  renderCalendar();
+}
+
+/* ── Tab toggle ── */
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.closest('.tabs').querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+
+/* ── Init ── */
+renderCalendar();
+</script>
+</body>
+</html>
