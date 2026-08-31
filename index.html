@@ -177,6 +177,17 @@
     --radius-lg:   12px;
     --radius-xl:   16px;
     --radius-pill: 100px;
+
+    /* ── Docs presentation layer (chrome only — not brand tokens) ── */
+    --doc-canvas:  #F6F7F9;
+    --doc-surface: #FFFFFF;
+    --doc-border:  #E7E9EC;
+    --doc-border-strong: #DADDE2;
+    --doc-ink:     #1A1A1D;
+    --doc-muted:   #5B616B;
+    --doc-faint:   #8A9099;
+    --doc-hover:   #F0F1F4;
+    --doc-shadow:  0 1px 2px rgba(16,24,40,.05);
   }
 
   /* ─────────────────────────────────────────
@@ -185,115 +196,120 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Noto Sans', sans-serif;
-    background: #F5F7F7;
-    color: var(--color-ooredoo-black);
+    background: var(--doc-canvas);
+    color: var(--doc-ink);
     font-size: 16px;
-    line-height: 1.5;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   /* ─────────────────────────────────────────
      LAYOUT
   ───────────────────────────────────────── */
-  .ds-page { max-width: 1200px; margin: 0 auto; padding: 40px 24px 80px; }
+  .ds-page { max-width: 1280px; margin: 0 auto; padding: 32px 32px 96px; }
 
-  /* Sidebar Nav */
-  .ds-layout { display: flex; gap: 40px; align-items: flex-start; }
+  /* Sidebar Nav — sticky rail (Fluent/Material docs style) */
+  .ds-layout { display: flex; gap: 48px; align-items: flex-start; }
   .ds-nav {
     position: sticky; top: 24px;
-    width: 230px; flex-shrink: 0;
-    background: white; border-radius: var(--radius-xl);
-    padding: 20px 0;
-    box-shadow: var(--shadow-sm);
-    border: 1px solid var(--color-gray-4);
+    width: 236px; flex-shrink: 0;
+    background: transparent; border: none; box-shadow: none;
+    padding: 4px 0;
     max-height: calc(100vh - 48px);
     overflow-y: auto;
   }
   .ds-nav-title {
     font-family: 'Rubik', sans-serif;
     font-size: 11px; font-weight: 700;
-    letter-spacing: .08em;
+    letter-spacing: .1em;
     text-transform: uppercase;
-    color: var(--color-gray-2);
-    padding: 12px 20px 8px;
+    color: var(--doc-faint);
+    padding: 14px 12px 6px;
   }
   .ds-nav a {
     display: block;
     font-family: 'Noto Sans', sans-serif;
-    font-size: 13px; font-weight: 500;
-    color: var(--color-gray-1);
-    padding: 8px 20px;
+    font-size: 13.5px; font-weight: 500;
+    color: var(--doc-muted);
+    padding: 7px 12px;
+    margin: 1px 0;
+    border-radius: var(--radius-md);
     text-decoration: none;
-    border-left: 2px solid transparent;
-    transition: all .15s;
+    transition: background .12s, color .12s;
   }
-  .ds-nav a:hover { color: var(--color-ooredoo-red); background: #FFF0F0; border-left-color: var(--color-ooredoo-red); }
-  .ds-content { flex: 1; min-width: 0; }
+  .ds-nav a:hover { color: var(--doc-ink); background: var(--doc-hover); }
+  .ds-content { flex: 1; min-width: 0; max-width: 940px; }
 
   /* ─────────────────────────────────────────
      SECTION HEADERS
   ───────────────────────────────────────── */
   .ds-hero {
-    background: linear-gradient(135deg, var(--color-ooredoo-black) 0%, #3a2f32 100%);
-    border-radius: 16px;
-    padding: 20px 28px;
-    margin-bottom: 32px;
-    color: white;
-    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    background: var(--doc-surface);
+    border: 1px solid var(--doc-border);
+    border-radius: 20px;
+    padding: 32px 36px;
+    margin-bottom: 48px;
+    color: var(--doc-ink);
+    box-shadow: var(--doc-shadow);
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
   }
   .ds-hero h1 {
     font-family: 'Rubik', sans-serif;
-    font-size: 24px; font-weight: 700;
-    line-height: 1.15;
-    margin-bottom: 4px;
+    font-size: 34px; font-weight: 600;
+    line-height: 1.1; letter-spacing: -.025em;
+    margin-bottom: 10px;
   }
   .ds-hero h1 span { color: var(--color-ooredoo-red); }
-  .ds-hero p { font-size: 13px; color: rgba(255,255,255,.65); max-width: 440px; }
+  .ds-hero p { font-size: 15px; color: var(--doc-muted); max-width: 520px; line-height: 1.55; }
   .ds-hero-badge {
-    background: var(--color-ooredoo-red);
-    color: white;
-    font-family: 'Rubik', sans-serif;
+    background: var(--doc-canvas);
+    color: var(--doc-muted);
+    border: 1px solid var(--doc-border);
+    font-family: 'Outfit', sans-serif;
     font-size: 12px; font-weight: 600;
     padding: 6px 14px;
     border-radius: var(--radius-pill);
-    letter-spacing: .05em;
+    letter-spacing: .02em;
     white-space: nowrap;
     flex-shrink: 0;
   }
 
-  .ds-section { margin-bottom: 60px; }
+  .ds-section { margin-bottom: 72px; scroll-margin-top: 24px; }
   .ds-section-title {
     font-family: 'Rubik', sans-serif;
-    font-size: 18px; font-weight: 600;
-    color: var(--color-ooredoo-black);
-    letter-spacing: -.01em;
-    padding-bottom: 10px;
-    border-bottom: 2px solid var(--color-gray-4);
-    margin-bottom: 20px;
-    display: flex; align-items: center; gap: 8px;
+    font-size: 26px; font-weight: 600;
+    color: var(--doc-ink);
+    letter-spacing: -.02em;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--doc-border);
+    margin-bottom: 28px;
+    position: relative;
   }
   .ds-section-title::before {
-    content: ''; display: block; width: 3px; height: 18px;
+    content: ''; position: absolute; left: 0; bottom: -1px;
+    width: 40px; height: 2px;
     background: var(--color-ooredoo-red); border-radius: 2px;
   }
   .ds-sub-title, .ds-sub {
     font-family: 'Rubik', sans-serif;
-    font-size: 14px; font-weight: 600;
-    text-transform: uppercase; letter-spacing: .07em;
-    color: var(--color-gray-2);
-    margin-bottom: 14px;
+    font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: .09em;
+    color: var(--doc-faint);
+    margin-bottom: 16px;
   }
 
   /* ─────────────────────────────────────────
      CARDS & UTILS
   ───────────────────────────────────────── */
   .ds-card {
-    background: white;
-    border-radius: var(--radius-xl);
-    border: 1px solid var(--color-gray-4);
-    padding: 24px;
-    box-shadow: var(--shadow-sm);
+    background: var(--doc-surface);
+    border-radius: 16px;
+    border: 1px solid var(--doc-border);
+    padding: 28px;
+    box-shadow: var(--doc-shadow);
   }
-  .divider { border: none; border-top: 1px solid var(--color-gray-4); margin: 24px 0; }
+  .divider { border: none; border-top: 1px solid var(--doc-border); margin: 28px 0; }
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
   .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
   
@@ -308,25 +324,25 @@
      COLOR SWATCHES
   ───────────────────────────────────────── */
   .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
-  .swatch { border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(0,0,0,.06); box-shadow: var(--shadow-sm); }
+  .swatch { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--doc-border); box-shadow: none; }
   .swatch-color { height: 72px; }
-  .swatch-info { padding: 10px 12px; background: white; }
-  .swatch-name { font-size: 11px; font-weight: 700; color: var(--color-ooredoo-black); }
-  .swatch-hex  { font-size: 10px; font-family: 'Outfit', monospace; color: var(--color-gray-1); margin-top: 2px; }
+  .swatch-info { padding: 10px 12px; background: var(--doc-surface); border-top: 1px solid var(--doc-border); }
+  .swatch-name { font-size: 11px; font-weight: 700; color: var(--doc-ink); }
+  .swatch-hex  { font-size: 10px; font-family: 'Outfit', monospace; color: var(--doc-faint); margin-top: 2px; letter-spacing: .02em; }
 
   /* ─────────────────────────────────────────
      TYPOGRAPHY SPECIMENS
   ───────────────────────────────────────── */
   .type-specimen { display: flex; flex-direction: column; gap: 10px; }
   .type-row {
-    display: flex; align-items: baseline; gap: 20px; padding: 14px 18px;
-    background: white; border-radius: var(--radius-md);
-    border: 1px solid var(--color-gray-4);
+    display: flex; align-items: baseline; gap: 20px; padding: 16px 18px;
+    background: var(--doc-surface); border-radius: var(--radius-lg);
+    border: 1px solid var(--doc-border);
   }
   .type-meta { min-width: 180px; flex-shrink: 0; }
-  .type-meta .label, .type-meta .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--color-gray-2); }
-  .type-meta .spec  { font-size: 10px; font-family: 'Outfit', monospace; color: var(--color-gray-1); margin-top: 3px; }
-  .type-sample { color: var(--color-ooredoo-black); }
+  .type-meta .label, .type-meta .lbl { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: var(--doc-faint); }
+  .type-meta .spec  { font-size: 10px; font-family: 'Outfit', monospace; color: var(--doc-muted); margin-top: 3px; }
+  .type-sample { color: var(--doc-ink); }
 
   /* ─────────────────────────────────────────
      SPACING & RADIUS
@@ -2221,8 +2237,8 @@
       </a>
       <div style="position:relative">
         <button id="vh-btn" type="button" aria-expanded="false"
-          style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.25);font-family:'Rubik',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#fff" stroke-width="2"/><path d="M12 7v5l3 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          style="display:inline-flex;align-items:center;gap:6px;background:var(--doc-surface);color:var(--doc-muted);border:1px solid var(--doc-border);font-family:'Rubik',sans-serif;font-size:12px;font-weight:600;padding:8px 14px;border-radius:var(--radius-pill);cursor:pointer;white-space:nowrap">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Version history
         </button>
         <div id="vh-panel" hidden
