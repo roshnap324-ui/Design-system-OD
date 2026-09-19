@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ooredoo Flow Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-ooredoo-red: #ED1C24;
+      --color-ooredoo-blue: #0047BB;
+      --color-ooredoo-black: #221E20;
+      --color-pure-white: #FFFFFF;
+      --color-bg-1: #FDFDFD;
+      --color-bg-2: #EBF0F0;
+      --color-gray-1: #6D6D6D;
+      --color-gray-2: #8F8F8F;
+      --color-gray-3: #BFBFBF;
+      --color-gray-4: #E0E0E0;
+      --color-gray-5: #EEEEEE;
+    }
+
+    body {
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--color-bg-1);
+      color: var(--color-ooredoo-black);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: var(--color-pure-white);
+      border-bottom: 1px solid var(--color-gray-5);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .header-back {
+      color: var(--color-ooredoo-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .header-back:hover {
+      color: var(--color-ooredoo-red);
+    }
+
+    .header-title {
+      flex: 1;
+    }
+
+    .header-title h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .header-title p {
+      font-size: 0.9rem;
+      color: var(--color-gray-1);
+    }
+
+    /* Container */
+    .container {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--color-pure-white);
+      padding: 1.5rem;
+      border-radius: 12px;
+      border: 1px solid var(--color-gray-5);
+      height: fit-content;
+      position: sticky;
+      top: 20px;
+    }
+
+    .sidebar-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .sidebar-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-gray-2);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-item {
+      padding: 0.7rem 0.75rem;
+      cursor: pointer;
+      border-radius: 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+
+    .sidebar-item:hover {
+      background: var(--color-bg-1);
+      border-color: var(--color-gray-4);
+    }
+
+    .sidebar-item.active {
+      background: var(--color-ooredoo-red);
+      color: var(--color-pure-white);
+      border-color: var(--color-ooredoo-red);
+      font-weight: 600;
+    }
+
+    .sidebar-count {
+      font-size: 0.85rem;
+      color: var(--color-gray-2);
+      font-weight: 600;
+    }
+
+    .sidebar-item.active .sidebar-count {
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    /* Main Content */
+    .main {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    /* Search & Filter Bar */
+    .search-filter-bar {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+      position: relative;
+    }
+
+    .search-box input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid var(--color-gray-4);
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .search-box input::placeholder {
+      color: var(--color-gray-2);
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: var(--color-ooredoo-blue);
+      box-shadow: 0 0 0 3px rgba(0, 71, 187, 0.1);
+    }
+
+    .filter-btn {
+      padding: 0.7rem 1.2rem;
+      border: 1px solid var(--color-gray-4);
+      border-radius: 8px;
+      background: var(--color-pure-white);
+      color: var(--color-ooredoo-black);
+      font-weight: 600;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .filter-btn:hover {
+      border-color: var(--color-ooredoo-blue);
+      color: var(--color-ooredoo-blue);
+    }
+
+    .filter-btn.active {
+      background: var(--color-ooredoo-red);
+      color: var(--color-pure-white);
+      border-color: var(--color-ooredoo-red);
+    }
+
+    .filter-tags {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    /* Flow Grid */
+    .flows-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .flow-card {
+      background: var(--color-pure-white);
+      border-radius: 12px;
+      border: 1px solid var(--color-gray-5);
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flow-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      border-color: var(--color-ooredoo-blue);
+    }
+
+    .flow-thumbnail {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--color-gray-3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .flow-thumbnail::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, rgba(237, 28, 36, 0.05) 0%, rgba(0, 71, 187, 0.05) 100%);
+    }
+
+    .flow-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .flow-category {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: var(--color-gray-2);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.5px;
+    }
+
+    .flow-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--color-ooredoo-black);
+      margin-bottom: 0.5rem;
+    }
+
+    .flow-owner {
+      font-size: 0.85rem;
+      color: var(--color-gray-1);
+      margin-bottom: 1rem;
+    }
+
+    .flow-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 1rem;
+      border-top: 1px solid var(--color-gray-5);
+    }
+
+    .flow-avatars {
+      display: flex;
+      gap: -8px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--color-gray-4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-pure-white);
+      margin-left: -8px;
+      border: 2px solid var(--color-pure-white);
+    }
+
+    .avatar:first-child {
+      margin-left: 0;
+    }
+
+    .avatar.avatar-1 { background: #FF7A8A; }
+    .avatar.avatar-2 { background: #6FA3FF; }
+    .avatar.avatar-3 { background: #4FD9A8; }
+
+    .flow-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .tag {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
+      background: var(--color-bg-2);
+      color: var(--color-gray-1);
+      border-radius: 4px;
+      font-weight: 500;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+
+      .flows-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .search-filter-bar {
+        flex-direction: column;
+      }
+
+      .search-box {
+        width: 100%;
+      }
+
+      .filter-tags {
+        width: 100%;
+        overflow-x: auto;
+      }
+
+      .flows-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <a href="home.html" class="header-back">← Back to Home</a>
+    <div class="header-title">
+      <h1>Flow Playground</h1>
+      <p>14 flows · click a card to open its live prototype</p>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+    <!-- Sidebar Filters -->
+    <aside class="sidebar">
+      <!-- Browse Section -->
+      <div class="sidebar-section">
+        <div class="sidebar-label">Browse</div>
+        <div class="sidebar-item active">
+          <span>All flows</span>
+          <span class="sidebar-count">14</span>
+        </div>
+        <div class="sidebar-item">
+          <span>B2B</span>
+          <span class="sidebar-count">6</span>
+        </div>
+        <div class="sidebar-item">
+          <span>B2C</span>
+          <span class="sidebar-count">12</span>
+        </div>
+        <div class="sidebar-item">
+          <span>On a branch</span>
+          <span class="sidebar-count">4</span>
+        </div>
+      </div>
+
+      <!-- Designer Section -->
+      <div class="sidebar-section">
+        <div class="sidebar-label">Designer</div>
+        <div class="sidebar-item">Firoz</div>
+        <div class="sidebar-item">Hasan</div>
+        <div class="sidebar-item">Junaid</div>
+        <div class="sidebar-item">Mehwish</div>
+        <div class="sidebar-item">Rafzin</div>
+        <div class="sidebar-item">Riyaz</div>
+        <div class="sidebar-item">Usman</div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- Search & Filter Bar -->
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <input type="text" placeholder="Search flows or designers..." />
+        </div>
+        <div class="filter-tags">
+          <button class="filter-btn active">All</button>
+          <button class="filter-btn">All 14</button>
+          <button class="filter-btn">App 12</button>
+          <button class="filter-btn">Web 2</button>
+        </div>
+      </div>
+
+      <!-- Flows Grid -->
+      <div class="flows-grid">
+        <!-- Flow Card 1 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">P</div>
+          <div class="flow-content">
+            <div class="flow-category">Payment Gateway</div>
+            <h3 class="flow-name">Recharge</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">J</div>
+                <div class="avatar avatar-1">F</div>
+                <div class="avatar avatar-3">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 2 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">P</div>
+          <div class="flow-content">
+            <div class="flow-category">Payment Gateway</div>
+            <h3 class="flow-name">Bill Payment</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">J</div>
+                <div class="avatar avatar-1">F</div>
+                <div class="avatar avatar-3">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 3 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">P</div>
+          <div class="flow-content">
+            <div class="flow-category">Payment Gateway</div>
+            <h3 class="flow-name">Saved Card</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">J</div>
+                <div class="avatar avatar-1">F</div>
+                <div class="avatar avatar-3">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 4 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">B</div>
+          <div class="flow-content">
+            <div class="flow-category">B2B Marketplace - UI Auditing</div>
+            <h3 class="flow-name">Revamping of Marketplace website</h3>
+            <p class="flow-owner">Owned by Riyaz</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-3">R</div>
+                <div class="avatar avatar-1">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 5 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">S</div>
+          <div class="flow-content">
+            <div class="flow-category">Subscription</div>
+            <h3 class="flow-name">Shift your Home+</h3>
+            <p class="flow-owner">Owned by Firoz</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-1">F</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 6 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">O</div>
+          <div class="flow-content">
+            <div class="flow-category">Onboarding</div>
+            <h3 class="flow-name">New User Onboarding</h3>
+            <p class="flow-owner">Owned by Hasan</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">H</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 7 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">A</div>
+          <div class="flow-content">
+            <div class="flow-category">Account Management</div>
+            <h3 class="flow-name">Plan Upgrade & Downgrade</h3>
+            <p class="flow-owner">Owned by Junaid</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">J</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 8 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">S</div>
+          <div class="flow-content">
+            <div class="flow-category">Support & Help</div>
+            <h3 class="flow-name">Customer Support Portal</h3>
+            <p class="flow-owner">Owned by Mehwish</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-1">M</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 9 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">I</div>
+          <div class="flow-content">
+            <div class="flow-category">IoT & Smart Home</div>
+            <h3 class="flow-name">Smart Device Integration</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-3">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 10 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">P</div>
+          <div class="flow-content">
+            <div class="flow-category">Payments & Invoicing</div>
+            <h3 class="flow-name">Corporate Billing</h3>
+            <p class="flow-owner">Owned by Rafzin</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">R</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 11 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">A</div>
+          <div class="flow-content">
+            <div class="flow-category">Analytics & Reporting</div>
+            <h3 class="flow-name">Usage Analytics Dashboard</h3>
+            <p class="flow-owner">Owned by Usman</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-1">U</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 12 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">N</div>
+          <div class="flow-content">
+            <div class="flow-category">Notifications</div>
+            <h3 class="flow-name">Push Notification Center</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-2">F</div>
+                <div class="avatar avatar-3">J</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 13 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">L</div>
+          <div class="flow-content">
+            <div class="flow-category">Loyalty & Rewards</div>
+            <h3 class="flow-name">Loyalty Program Redemption</h3>
+            <p class="flow-owner">No file owner set</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-1">H</div>
+                <div class="avatar avatar-2">M</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+
+        <!-- Flow Card 14 -->
+        <a href="prototype-flow.html" class="flow-card">
+          <div class="flow-thumbnail">S</div>
+          <div class="flow-content">
+            <div class="flow-category">Settings & Preferences</div>
+            <h3 class="flow-name">Privacy & Security Settings</h3>
+            <p class="flow-owner">Owned by Firoz</p>
+            <div class="flow-footer">
+              <div class="flow-avatars">
+                <div class="avatar avatar-3">F</div>
+                <div class="avatar avatar-2">U</div>
+              </div>
+              <div class="flow-tags">
+                <span class="tag">B2B & B2C</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
