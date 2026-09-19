@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amali Gym - Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --color-ooredoo-red: #ED1C24;
+      --color-ooredoo-blue: #0047BB;
+      --color-ooredoo-black: #221E20;
+      --color-pure-white: #FFFFFF;
+      --color-bg-1: #FDFDFD;
+      --color-gray-1: #6D6D6D;
+      --color-gray-5: #EEEEEE;
+    }
+
+    body {
+      font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--color-bg-1);
+      color: var(--color-ooredoo-black);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    .header {
+      background: var(--color-pure-white);
+      border-bottom: 1px solid var(--color-gray-5);
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .header-back {
+      color: var(--color-ooredoo-blue);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .header-back:hover {
+      color: var(--color-ooredoo-red);
+    }
+
+    .header-title {
+      flex: 1;
+    }
+
+    .header-title h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .header-title p {
+      font-size: 0.9rem;
+      color: var(--color-gray-1);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    /* Journey Details */
+    .journey-info {
+      background: var(--color-pure-white);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      border: 1px solid var(--color-gray-5);
+    }
+
+    .journey-info h2 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .journey-meta {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+      color: var(--color-gray-1);
+      font-size: 0.95rem;
+    }
+
+    .meta-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .meta-label {
+      font-weight: 600;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      color: var(--color-gray-1);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.5px;
+    }
+
+    .meta-value {
+      color: var(--color-ooredoo-black);
+      font-size: 0.95rem;
+    }
+
+    /* Figma Embed */
+    .figma-container {
+      background: var(--color-pure-white);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-gray-5);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 2rem;
+    }
+
+    .figma-embed {
+      width: 100%;
+      height: 800px;
+      border: none;
+      display: block;
+    }
+
+    /* Instructions */
+    .instructions {
+      background: #F0F7FF;
+      border-left: 4px solid var(--color-ooredoo-blue);
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    }
+
+    .instructions h3 {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      color: var(--color-ooredoo-blue);
+    }
+
+    .instructions p {
+      font-size: 0.95rem;
+      color: var(--color-gray-1);
+      line-height: 1.6;
+    }
+
+    .instructions ul {
+      margin: 0.75rem 0 0 1.5rem;
+      color: var(--color-gray-1);
+    }
+
+    .instructions li {
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .header-title h1 {
+        font-size: 1.5rem;
+      }
+
+      .journey-meta {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .figma-embed {
+        height: 600px;
+      }
+
+      .container {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <div class="header">
+    <a href="playground.html" class="header-back">← Back to Playground</a>
+    <div class="header-title">
+      <h1>Amali Gym Journey</h1>
+      <p>Complete user journey template showcasing design system in action</p>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container">
+    <!-- Journey Info -->
+    <div class="journey-info">
+      <h2>🏋️ Amali Gym - Complete Journey</h2>
+      <p>This journey demonstrates how users interact with the Amali Gym application from initial onboarding through membership management and workout tracking.</p>
+
+      <div class="journey-meta">
+        <div class="meta-item">
+          <span class="meta-label">Journey Type</span>
+          <span class="meta-value">Complete User Flow</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Screens</span>
+          <span class="meta-value">8+ key screens</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-value">User Onboarding & Membership</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Status</span>
+          <span class="meta-value">Interactive Prototype</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Instructions -->
+    <div class="instructions">
+      <h3>📖 How to Use This Journey</h3>
+      <p>View the complete Figma design below. You can:</p>
+      <ul>
+        <li>Explore all user journey screens in sequence</li>
+        <li>Click through the prototype to see interactions</li>
+        <li>Inspect design tokens and component usage</li>
+        <li>Use this as a reference for implementing similar journeys</li>
+      </ul>
+    </div>
+
+    <!-- Figma Embed -->
+    <div class="figma-container">
+      <iframe
+        class="figma-embed"
+        src="https://www.figma.com/embed?embed_host=share&url=https://www.figma.com/design/lxGlKTVlyMIImrn9WmdsGx/DS-explora---17-9-2026?node-id=38-25435&m=dev"
+        allowfullscreen
+        allow="fullscreen"
+      ></iframe>
+    </div>
+
+    <!-- Footer Info -->
+    <div class="journey-info">
+      <h3>Journey Details</h3>
+      <p><strong>Design System Integration:</strong> This journey showcases the Ooredoo Design System components in real-world usage, demonstrating how tokens, colors, typography, and component patterns work together to create a cohesive user experience.</p>
+      <p style="margin-top: 1rem; color: var(--color-gray-1); font-size: 0.9rem;"><strong>Tip:</strong> Open the Figma file in a new tab to access detailed design specs, component documentation, and design token information.</p>
+    </div>
+  </div>
+</body>
+</html>
